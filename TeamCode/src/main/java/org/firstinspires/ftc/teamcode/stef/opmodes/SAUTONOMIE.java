@@ -1,15 +1,14 @@
-package org.firstinspires.ftc.teamcode.mef.opmodes;
+package org.firstinspires.ftc.teamcode.stef.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
-import org.firstinspires.ftc.teamcode.mef.resurse.SConnection;
-import org.firstinspires.ftc.teamcode.mef.resurse.SHardware;
-import org.firstinspires.ftc.teamcode.mef.resurse.SRoti;
+import org.firstinspires.ftc.teamcode.stef.resurse.SConnection;
+import org.firstinspires.ftc.teamcode.stef.resurse.SHardware;
+import org.firstinspires.ftc.teamcode.stef.resurse.SRoti;
 
-import org.firstinspires.ftc.teamcode.mef.resurse.SVuforia;
-import org.firstinspires.ftc.teamcode.mef.resurse.SDmneAjuta;
+import org.firstinspires.ftc.teamcode.stef.resurse.SVuforia;
+import org.firstinspires.ftc.teamcode.stef.resurse.SDmneAjuta;
 
 @Autonomous(name = "SAUTONOMIE")
 public class SAUTONOMIE extends LinearOpMode {

@@ -1,11 +1,8 @@
-package org.firstinspires.ftc.teamcode.mef.resurse;
+package org.firstinspires.ftc.teamcode.stef.resurse;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.util.ElapsedTime;
-
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 
 public class SDmneAjuta {

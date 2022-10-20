@@ -1,8 +1,8 @@
-package org.firstinspires.ftc.teamcode.mef.resurse;
+package org.firstinspires.ftc.teamcode.stef.resurse;
 
 
-import static org.firstinspires.ftc.teamcode.mef.resurse.SHardware.cleste1;
-import static org.firstinspires.ftc.teamcode.mef.resurse.SHardware.cleste2;
+import static org.firstinspires.ftc.teamcode.stef.resurse.SHardware.cleste1;
+import static org.firstinspires.ftc.teamcode.stef.resurse.SHardware.cleste2;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;

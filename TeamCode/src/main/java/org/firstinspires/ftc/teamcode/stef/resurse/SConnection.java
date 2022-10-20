@@ -1,12 +1,9 @@
-package org.firstinspires.ftc.teamcode.mef.resurse;
+package org.firstinspires.ftc.teamcode.stef.resurse;
 
 import android.util.Log;
 
-import com.qualcomm.robotcore.util.ThreadPool;
-import com.vuforia.Vuforia;
-
 import org.firstinspires.ftc.robotcore.external.matrices.VectorF;
-import org.firstinspires.ftc.teamcode.mef.resurse.SVuforia;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;

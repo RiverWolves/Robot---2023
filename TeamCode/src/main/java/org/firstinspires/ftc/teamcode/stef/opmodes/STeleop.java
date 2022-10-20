@@ -1,12 +1,12 @@
-package org.firstinspires.ftc.teamcode.mef.opmodes;
+package org.firstinspires.ftc.teamcode.stef.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.mef.resurse.SGamepad;
-import org.firstinspires.ftc.teamcode.mef.resurse.SHardware;
-import org.firstinspires.ftc.teamcode.mef.resurse.SRoti;
-import org.firstinspires.ftc.teamcode.mef.resurse.SVuforia;
+import org.firstinspires.ftc.teamcode.stef.resurse.SGamepad;
+import org.firstinspires.ftc.teamcode.stef.resurse.SHardware;
+import org.firstinspires.ftc.teamcode.stef.resurse.SRoti;
+import org.firstinspires.ftc.teamcode.stef.resurse.SVuforia;
 
 @TeleOp(name = "Amin")
 public class STeleop extends LinearOpMode {
