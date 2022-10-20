@@ -13,8 +13,8 @@ public class SGamepad {
 
     private static float PUTERE_ROTI = 1;
 
-    private static float LIMITARE_SUS_LIFT = 8000;
-    private static float LIMITARE_JOS_LIFT = 0;
+    private static float LIMITARE_SUS_LIFT = 3800;
+    private static float LIMITARE_JOS_LIFT = 50;
 
 
     private static Gamepad.RumbleEffect
@@ -27,16 +27,21 @@ public class SGamepad {
 
     public static void init() {
         lift = null;
+        lift2 = null;
         SHardware.lift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     private static DcMotor lift = null;
-
+    private static DcMotor lift2 = null;
 
     public static void loop(OpMode opMode) {
         if (!SHardware.initializat) return;
         if (lift == null) {
             lift = SHardware.lift;
+        }
+
+        if (lift2 == null) {
+            lift2 = SHardware.lift2;
         }
 
 
@@ -64,10 +69,13 @@ public class SGamepad {
             }
             if (left_stick_y > 0.5f && pozitie_lift < LIMITARE_SUS_LIFT) {
                 lift.setPower(putere);
+                lift2.setPower(putere);
             } else if (left_stick_y < -0.5f && pozitie_lift > LIMITARE_JOS_LIFT) {
                 lift.setPower(-putere);
+                lift2.setPower(-putere);
             } else {
                 lift.setPower(0);
+                lift2.setPower(0);
             }
 
             boolean buton = Ceva.debouce(gamepad2.right_bumper);
@@ -82,6 +90,7 @@ public class SGamepad {
                 cleste2.setPosition(0.7);
 
             }
+            opMode.telemetry.addData("encoder: ", pozitie_lift);
             opMode.telemetry.addData("buton: ", buton);
             opMode.telemetry.addData("lift: ", lift.getCurrentPosition());
 

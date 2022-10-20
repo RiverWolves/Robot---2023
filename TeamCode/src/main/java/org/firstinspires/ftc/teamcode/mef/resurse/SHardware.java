@@ -3,10 +3,8 @@ package org.firstinspires.ftc.teamcode.mef.resurse;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -18,6 +16,7 @@ public class SHardware {
 
     public static DcMotor ss, sf, ds, df;
     public static DcMotor lift;
+    public static DcMotor lift2;
 
     public static Servo cleste1;
     public static Servo cleste2;
@@ -43,9 +42,6 @@ public class SHardware {
         imu = opMode.hardwareMap.get(BNO055IMU.class, "imu");
         imu.initialize(parameters);
 
-
-
-
         //MOTOARE
         ss = (DcMotor) opMode.hardwareMap.get("ss");
         sf = (DcMotor) opMode.hardwareMap.get("sf");
@@ -56,12 +52,13 @@ public class SHardware {
         df.setDirection(DcMotorSimple.Direction.REVERSE);
 
         lift = (DcMotor) opMode.hardwareMap.get("lift");
+        lift2 = (DcMotor) opMode.hardwareMap.get("lift2");
+
+        lift2.setDirection(DcMotorSimple.Direction.REVERSE);
 
         //servo cleste
         cleste2 = (Servo) opMode.hardwareMap.get("cleste1");
         cleste1 = (Servo) opMode.hardwareMap.get("cleste2");
-
-
 
         telemetry = opMode.telemetry;
 
