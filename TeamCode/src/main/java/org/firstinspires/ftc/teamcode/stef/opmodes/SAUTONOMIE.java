@@ -3,12 +3,11 @@ package org.firstinspires.ftc.teamcode.stef.opmodes;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.stef.resurse.SConnection;
 import org.firstinspires.ftc.teamcode.stef.resurse.SHardware;
 import org.firstinspires.ftc.teamcode.stef.resurse.SRoti;
 
-import org.firstinspires.ftc.teamcode.stef.resurse.SVuforia;
 import org.firstinspires.ftc.teamcode.stef.resurse.SDmneAjuta;
+import org.firstinspires.ftc.teamcode.tag.AutonAprilTagDetection;
 
 @Autonomous(name = "SAUTONOMIE")
 public class SAUTONOMIE extends LinearOpMode {
@@ -27,19 +26,17 @@ public class SAUTONOMIE extends LinearOpMode {
         SHardware.init(this);
 
         SDmneAjuta.init();
-        //Initializam si vuforia pentru ca suntem la autonomie si ne ajuta
-       // SVuforia.init(this);
+
+        AutonAprilTagDetection.init(this);
 
         //asteptam pana se apasa butonul de start!
         waitForStart();
 
         //In loc de functia loop vom avea un while care se opreste cand apasam pe butonul de stop
         while(!isStopRequested()){
-           // SVuforia.loop(this);
-//            telemetry.addData("dist",SHardware.distanta.getDistance(DistanceUnit.MM));
 
             SDmneAjuta.loop(this);
-//            SCreier.mergi(7650);
+
             SRoti.loop(this);
 
 
@@ -48,8 +45,6 @@ public class SAUTONOMIE extends LinearOpMode {
 
 
         SDmneAjuta.stop();
-        SVuforia.stop();
-        SConnection.stop();
         SHardware.initializat = false;
     }
 }

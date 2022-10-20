@@ -8,7 +8,7 @@ public class Ceva {
     private static boolean buttonState = false;
     private static boolean debounced = false;
 
-    public static boolean debouce(boolean buton) {
+    public static boolean buttonToSwich(boolean buton) {
 
         if (et == null) {
             et = new ElapsedTime();

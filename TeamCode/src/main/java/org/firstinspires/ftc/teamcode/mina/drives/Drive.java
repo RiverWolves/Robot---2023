@@ -6,7 +6,6 @@ public abstract class Drive {
 
     enum DriveType{
         MECANUM,
-        NONMecanum,
     }
 
     public DriveType driveType;

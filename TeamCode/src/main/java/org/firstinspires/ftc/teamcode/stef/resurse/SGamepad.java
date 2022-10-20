@@ -78,7 +78,7 @@ public class SGamepad {
                 lift2.setPower(0);
             }
 
-            boolean buton = Ceva.debouce(gamepad2.right_bumper);
+            boolean buton = Ceva.buttonToSwich(gamepad2.right_bumper);
 
             //cod cleste
             if(buton){
@@ -92,7 +92,6 @@ public class SGamepad {
             }
             opMode.telemetry.addData("encoder: ", pozitie_lift);
             opMode.telemetry.addData("buton: ", buton);
-            opMode.telemetry.addData("lift: ", lift.getCurrentPosition());
 
         }
 
