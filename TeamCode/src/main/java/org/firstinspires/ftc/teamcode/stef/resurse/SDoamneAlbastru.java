@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.stef.resurse.SHardware;
 import org.firstinspires.ftc.teamcode.stef.resurse.SRoti;
 
 
-public class SDmneAjuta {
+public class SDoamneAlbastru {
 
     private static int FAZA = 0;
     private static ElapsedTime et;
@@ -44,12 +44,12 @@ public class SDmneAjuta {
             SRoti.setVelXYR(0,0,0);
             SHardware.cleste1.setPosition(0);
             SHardware.cleste2.setPosition(1);
-            if(pozitie_lift <=LIMITARE_SUS_LIFT) {
+            if(pozitie_lift <= LIMITARE_SUS_LIFT) {
                 lift1.setPower(0.8);
                 lift2.setPower(0.8);
             }
 
-            if(pozitie_lift >=LIMITARE_SUS_LIFT-2000){
+            if(pozitie_lift >= LIMITARE_SUS_LIFT-2000){
                 lift1.setPower(0);
                 lift2.setPower(0);
                 FAZA++;
@@ -92,7 +92,7 @@ public class SDmneAjuta {
             }
         }
         if(FAZA == 5){
-            SRoti.setVelXY(-0.4f, 0.1f);
+            SRoti.setVelXY(0.4f, 0.1f);
             if(et.seconds() > 1.6){
                 SRoti.setVelXYR(0, 0, 0);
                 FAZA++;
@@ -108,8 +108,8 @@ public class SDmneAjuta {
             }
 
             if(pozitie_lift <= LIMITARE_JOS_LIFT){
-               lift1.setPower(0);
-               lift2.setPower(0);
+                lift1.setPower(0);
+                lift2.setPower(0);
                 FAZA++;
                 et.reset();
             }

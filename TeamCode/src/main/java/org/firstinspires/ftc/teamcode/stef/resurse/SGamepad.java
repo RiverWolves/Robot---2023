@@ -1,8 +1,9 @@
 package org.firstinspires.ftc.teamcode.stef.resurse;
 
 
+
 import static org.firstinspires.ftc.teamcode.stef.resurse.SHardware.cleste1;
-import static org.firstinspires.ftc.teamcode.stef.resurse.SHardware.cleste2;
+import static org.firstinspires.ftc.teamcode.stef.resurse.SHardware.lift1;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -12,9 +13,13 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 public class SGamepad {
 
     private static float PUTERE_ROTI = 1;
+    private static int nivel;
 
-    private static float LIMITARE_SUS_LIFT = 3800;
+    private static float LIMITARE_SUS_LIFT = 4700;
     private static float LIMITARE_JOS_LIFT = 50;
+    private static float POZITIE_1_LIFT = 1800;
+    private static float POZITIE_2_LIFT = 3000;
+    private static float DesereiblePoz;
 
 
     private static Gamepad.RumbleEffect
@@ -28,7 +33,7 @@ public class SGamepad {
     public static void init() {
         lift = null;
         lift2 = null;
-        SHardware.lift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        SHardware.lift1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     private static DcMotor lift = null;
@@ -37,7 +42,7 @@ public class SGamepad {
     public static void loop(OpMode opMode) {
         if (!SHardware.initializat) return;
         if (lift == null) {
-            lift = SHardware.lift;
+            lift = SHardware.lift1;
         }
 
         if (lift2 == null) {
@@ -78,20 +83,30 @@ public class SGamepad {
                 lift2.setPower(0);
             }
 
+          /*  if(gamepad2.left_bumper){
+                while(pozitie_lift < POZITIE_1_LIFT){
+                    //lift.setPower(putere);
+                    //lift2.setPower(putere);
+                    nivel = 1;
+                }
+            } */
+
             boolean buton = Ceva.buttonToSwich(gamepad2.right_bumper);
 
             //cod cleste
             if(buton){
-                cleste1.setPosition(0);
-                cleste2.setPosition(1);
+                SHardware.cleste1.setPosition(0);
+                SHardware.cleste2.setPosition(1);
 
             }if(!buton){
-                cleste1.setPosition(0.3);
-                cleste2.setPosition(0.7);
+                SHardware.cleste1.setPosition(0.11);
+                SHardware.cleste2.setPosition(0.87);
 
             }
             opMode.telemetry.addData("encoder: ", pozitie_lift);
             opMode.telemetry.addData("buton: ", buton);
+            opMode.telemetry.addData("nivel 1 ", nivel);
+            opMode.telemetry.addData("PozCleste", SHardware.cleste2.getPosition());
 
         }
 

@@ -15,11 +15,10 @@ public class SHardware {
     public static boolean initializat = false;
 
     public static DcMotor ss, sf, ds, df;
-    public static DcMotor lift;
+    public static DcMotor lift1;
     public static DcMotor lift2;
 
-    public static Servo cleste1;
-    public static Servo cleste2;
+    public static Servo cleste1, cleste2;
 
     public static BNO055IMU imu;
 
@@ -51,14 +50,14 @@ public class SHardware {
         ds.setDirection(DcMotorSimple.Direction.REVERSE);
         df.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        lift = (DcMotor) opMode.hardwareMap.get("lift");
+        lift1 = (DcMotor) opMode.hardwareMap.get("lift1");
         lift2 = (DcMotor) opMode.hardwareMap.get("lift2");
 
         lift2.setDirection(DcMotorSimple.Direction.REVERSE);
 
         //servo cleste
-        cleste2 = (Servo) opMode.hardwareMap.get("cleste1");
-        cleste1 = (Servo) opMode.hardwareMap.get("cleste2");
+        cleste1 = (Servo) opMode.hardwareMap.get("cleste1");
+        cleste2 = (Servo) opMode.hardwareMap.get("cleste2");
 
         telemetry = opMode.telemetry;
 

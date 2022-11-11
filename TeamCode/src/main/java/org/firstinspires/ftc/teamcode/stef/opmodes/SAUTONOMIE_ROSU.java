@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.stef.opmodes;
 
+
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
@@ -9,8 +10,8 @@ import org.firstinspires.ftc.teamcode.stef.resurse.SRoti;
 import org.firstinspires.ftc.teamcode.stef.resurse.SDmneAjuta;
 import org.firstinspires.ftc.teamcode.tag.AutonAprilTagDetection;
 
-@Autonomous(name = "SAUTONOMIE")
-public class SAUTONOMIE extends LinearOpMode {
+@Autonomous( name = "Autonomie_Rosu")
+public class SAUTONOMIE_ROSU extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -25,9 +26,9 @@ public class SAUTONOMIE extends LinearOpMode {
         //care este "this", adica clasa asta, intrucat extinde OpMode!!
         SHardware.init(this);
 
-        SDmneAjuta.init();
+       // AutonAprilTagDetection.init(this);
 
-        AutonAprilTagDetection.init(this);
+        SDmneAjuta.init();
 
         //asteptam pana se apasa butonul de start!
         waitForStart();
@@ -36,10 +37,8 @@ public class SAUTONOMIE extends LinearOpMode {
         while(!isStopRequested()){
 
             SDmneAjuta.loop(this);
-
             SRoti.loop(this);
-
-
+           // AutonAprilTagDetection.loop(this);
             telemetry.update();
         }
 

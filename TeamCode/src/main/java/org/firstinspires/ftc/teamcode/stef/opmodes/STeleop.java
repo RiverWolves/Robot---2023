@@ -6,9 +6,9 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.stef.resurse.SGamepad;
 import org.firstinspires.ftc.teamcode.stef.resurse.SHardware;
 import org.firstinspires.ftc.teamcode.stef.resurse.SRoti;
-import org.firstinspires.ftc.teamcode.stef.resurse.SVuforia;
 
-@TeleOp(name = "Amin")
+
+@TeleOp(name = "TeleOp")
 public class STeleop extends LinearOpMode {
 
     @Override
@@ -30,7 +30,7 @@ public class STeleop extends LinearOpMode {
 
             telemetry.update();
         }
-        SVuforia.stop();
+
         SHardware.initializat = false;
     }
 }

@@ -6,7 +6,7 @@ public class Ceva {
 
     private static ElapsedTime et, lastDebounceTime;
     private static boolean buttonState = false;
-    private static boolean debounced = false;
+    private static boolean debounced = true;
 
     public static boolean buttonToSwich(boolean buton) {
 
