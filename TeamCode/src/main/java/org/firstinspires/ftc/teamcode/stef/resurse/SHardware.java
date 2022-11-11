@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.stef.resurse;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
@@ -14,11 +15,10 @@ public class SHardware {
 
     public static boolean initializat = false;
 
-    public static DcMotor ss, sf, ds, df;
-    public static DcMotor lift1;
-    public static DcMotor lift2;
+    public static DcMotor ss, sf, ds, df,
+                          lift1, lift2;
 
-    public static Servo cleste1, cleste2;
+    public static CRServo intake1, intake2;
 
     public static BNO055IMU imu;
 
@@ -56,8 +56,8 @@ public class SHardware {
         lift2.setDirection(DcMotorSimple.Direction.REVERSE);
 
         //servo cleste
-        cleste1 = (Servo) opMode.hardwareMap.get("cleste1");
-        cleste2 = (Servo) opMode.hardwareMap.get("cleste2");
+        intake1 = (CRServo) opMode.hardwareMap.get("intake1");
+        intake2 = (CRServo) opMode.hardwareMap.get("intake2");
 
         telemetry = opMode.telemetry;
 

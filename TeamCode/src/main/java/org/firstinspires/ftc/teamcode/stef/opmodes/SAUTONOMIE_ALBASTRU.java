@@ -4,12 +4,11 @@ package org.firstinspires.ftc.teamcode.stef.opmodes;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.stef.resurse.SDoamneAlbastru;
+import org.firstinspires.ftc.teamcode.stef.resurse.Autonomie_Albastru;
 import org.firstinspires.ftc.teamcode.stef.resurse.SHardware;
 import org.firstinspires.ftc.teamcode.stef.resurse.SRoti;
 
-import org.firstinspires.ftc.teamcode.stef.resurse.SDmneAjuta;
-import org.firstinspires.ftc.teamcode.tag.AutonAprilTagDetection;
+import org.firstinspires.ftc.teamcode.stef.resurse.Autonumoie_Rosu;
 
 @Autonomous( name = "Autonomie_Albastru")
 public class SAUTONOMIE_ALBASTRU extends LinearOpMode {
@@ -29,7 +28,7 @@ public class SAUTONOMIE_ALBASTRU extends LinearOpMode {
 
         // AutonAprilTagDetection.init(this);
 
-        SDoamneAlbastru.init();
+        Autonomie_Albastru.init();
 
         //asteptam pana se apasa butonul de start!
         waitForStart();
@@ -37,14 +36,14 @@ public class SAUTONOMIE_ALBASTRU extends LinearOpMode {
         //In loc de functia loop vom avea un while care se opreste cand apasam pe butonul de stop
         while(!isStopRequested()){
 
-            SDoamneAlbastru.loop(this);
+            Autonomie_Albastru.loop(this);
             SRoti.loop(this);
             // AutonAprilTagDetection.loop(this);
             telemetry.update();
         }
 
 
-        SDmneAjuta.stop();
+        Autonumoie_Rosu.stop();
         SHardware.initializat = false;
     }
 }
