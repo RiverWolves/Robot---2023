@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.stef.opmodes;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.stef.resurse.SGamepad;
 import org.firstinspires.ftc.teamcode.stef.resurse.SHardware;
 import org.firstinspires.ftc.teamcode.stef.resurse.drives.Intake;
@@ -17,7 +18,7 @@ public class STeleop extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
 
         SHardware.init(this);
-        SGamepad.init();
+        SGamepad.init(this);
 
         waitForStart();
 
@@ -27,7 +28,6 @@ public class STeleop extends LinearOpMode {
 
             SGamepad.loop(this);
 
-            Roti.loop(this);
             Lift.loop(this);
             Intake.loop(this);
 

@@ -15,7 +15,9 @@ public class SGamepad {
     private static boolean fc_roti,
                            fc_lift;
 
-    public static void init() {
+    private static SampleMecanumDrive mecanum;
+
+    public static void init(OpMode opMode) {
         x = 0;
         y = 0;
         r = 0;
@@ -23,6 +25,8 @@ public class SGamepad {
 
         fc_roti = false;
         fc_lift = false;
+
+        mecanum = new SampleMecanumDrive(opMode.hardwareMap);   //cream un nou mecanum drive
     }
 
     public static void loop (OpMode opMode) {
@@ -33,7 +37,6 @@ public class SGamepad {
         fc_roti = gamepad1.left_bumper;   //conditie fine control roti
 
         //Roti
-        SampleMecanumDrive mecanum = new SampleMecanumDrive(opMode.hardwareMap);   //cream un nou mecanum drive
         x = Ceva.fineControl(fc_roti, gamepad1.left_stick_x);            //setam puterea lui x
         y = Ceva.fineControl(fc_roti, gamepad1.left_stick_y);           //setam puterea lui y
         r = Ceva.fineControl(fc_roti, gamepad1.right_stick_x);         //setam puterea lui r
