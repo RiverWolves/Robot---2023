@@ -3,8 +3,9 @@ package org.firstinspires.ftc.teamcode.stef.resurse;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.Gamepad;
-import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
+
+import org.firstinspires.ftc.teamcode.stef.opmodes.STeleop;
 import org.firstinspires.ftc.teamcode.stef.resurse.drives.Ceva;
 import org.firstinspires.ftc.teamcode.stef.resurse.drives.Intake;
 import org.firstinspires.ftc.teamcode.stef.resurse.drives.Lift;
@@ -15,9 +16,7 @@ public class SGamepad {
     private static boolean fc_roti,
                            fc_lift;
 
-    private static SampleMecanumDrive mecanum;
-
-    public static void init(OpMode opMode) {
+    public static void init() {
         x = 0;
         y = 0;
         r = 0;
@@ -26,7 +25,6 @@ public class SGamepad {
         fc_roti = false;
         fc_lift = false;
 
-        mecanum = new SampleMecanumDrive(opMode.hardwareMap);   //cream un nou mecanum drive
     }
 
     public static void loop (OpMode opMode) {
@@ -40,7 +38,7 @@ public class SGamepad {
         x = Ceva.fineControl(fc_roti, gamepad1.left_stick_x);            //setam puterea lui x
         y = Ceva.fineControl(fc_roti, gamepad1.left_stick_y);           //setam puterea lui y
         r = Ceva.fineControl(fc_roti, gamepad1.right_stick_x);         //setam puterea lui r
-        mecanum.setWeightedDrivePower(new Pose2d(x, y, r));           //atribuim puterile
+        STeleop.mecanum.setWeightedDrivePower(new Pose2d(x, y, r));           //atribuim puterile
 
         //Lift
         putere_lift = Ceva.fineControl(fc_lift, gamepad2.left_stick_y);   //setam puterea liftului

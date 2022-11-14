@@ -3,10 +3,8 @@ package org.firstinspires.ftc.teamcode.stef.resurse;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -21,9 +19,6 @@ public class SHardware {
     public static Servo intake;
 
     public static BNO055IMU imu;
-
-
-    public static NormalizedColorSensor colorSensor;
 
     public static Telemetry telemetry;
 
@@ -63,6 +58,7 @@ public class SHardware {
 
         //LA SFARSITUL INITIALIZARII SETAM VARIABILA LA TRUE
         initializat = true;
+        telemetry.addData("Hardware initializat: ", initializat);
     }
 
 }

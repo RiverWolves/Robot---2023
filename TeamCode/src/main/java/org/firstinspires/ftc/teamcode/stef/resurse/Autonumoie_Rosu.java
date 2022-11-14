@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.stef.resurse.drives.Intake;
 import org.firstinspires.ftc.teamcode.stef.resurse.drives.Roti;
 
 
@@ -39,8 +40,7 @@ public class Autonumoie_Rosu {
         }
         if(FAZA == 0){
             Roti.setVelXYR(0,0,0);
-            SHardware.cleste1.setPosition(0);
-            SHardware.cleste2.setPosition(1);
+            Intake.setVal(true);
             if(pozitie_lift <=LIMITARE_SUS_LIFT) {
                 lift1.setPower(0.8);
                 lift2.setPower(0.8);
@@ -64,8 +64,7 @@ public class Autonumoie_Rosu {
 
         if(FAZA == 2){
             Roti.setVelXYR(0,0,0);
-            SHardware.cleste1.setPosition(0.15);
-            SHardware.cleste2.setPosition(0.85);
+
             if(et.seconds() > 0.6) {
                 FAZA++;
                 et.reset();
@@ -73,8 +72,7 @@ public class Autonumoie_Rosu {
 
         }
         if(FAZA == 3){
-            SHardware.cleste1.setPosition(0);
-            SHardware.cleste2.setPosition(1);
+            Intake.setVal(false);
             if(et.seconds() > 0.6){
                 FAZA++;
                 et.reset();

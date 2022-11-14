@@ -8,17 +8,20 @@ import org.firstinspires.ftc.teamcode.stef.resurse.SGamepad;
 import org.firstinspires.ftc.teamcode.stef.resurse.SHardware;
 import org.firstinspires.ftc.teamcode.stef.resurse.drives.Intake;
 import org.firstinspires.ftc.teamcode.stef.resurse.drives.Lift;
-import org.firstinspires.ftc.teamcode.stef.resurse.drives.Roti;
+
 
 
 @TeleOp(name = "TeleOp")
 public class STeleop extends LinearOpMode {
 
+    public static SampleMecanumDrive mecanum = null;
+
     @Override
     public void runOpMode() throws InterruptedException {
 
         SHardware.init(this);
-        SGamepad.init(this);
+        SGamepad.init();
+        mecanum = new SampleMecanumDrive(this.hardwareMap);
 
         waitForStart();
 
