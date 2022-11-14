@@ -1,5 +1,6 @@
-package org.firstinspires.ftc.teamcode.stef.resurse;
+package org.firstinspires.ftc.teamcode.stef.resurse.drives;
 
+import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class Ceva {
@@ -7,6 +8,8 @@ public class Ceva {
     private static ElapsedTime et, lastDebounceTime;
     private static boolean buttonState = false;
     private static boolean debounced = true;
+
+    private static float constanta = 0.5f;
 
     public static boolean buttonToSwich(boolean buton) {
 
@@ -40,5 +43,21 @@ public class Ceva {
         }
 
         return debounced;
+    }
+
+    public static void rumble(){
+        Gamepad.RumbleEffect rum = new Gamepad.RumbleEffect.Builder()
+                .addStep(1, 0.2, 450)
+                .addStep(0, 0, 100)
+                .addStep(0.2, 1, 450)
+                .addStep(0, 0, 600)
+                .build();
+    }
+
+    public static float fineControl(boolean conditie, float in) {
+        if(conditie){
+            return in * constanta;
+        }
+        return in;
     }
 }

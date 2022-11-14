@@ -2,12 +2,9 @@ package org.firstinspires.ftc.teamcode.stef.resurse;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.teamcode.stef.resurse.SHardware;
-import org.firstinspires.ftc.teamcode.stef.resurse.SRoti;
+import org.firstinspires.ftc.teamcode.stef.resurse.drives.Roti;
 
 
 public class Autonumoie_Rosu {
@@ -19,7 +16,7 @@ public class Autonumoie_Rosu {
     private static DcMotor lift1, lift2 = null;
 
     public static void init() {
-        SRoti.setVelXYR(0, 0, 0);
+        Roti.setVelXYR(0, 0, 0);
 
     }
 
@@ -41,7 +38,7 @@ public class Autonumoie_Rosu {
             et.reset();
         }
         if(FAZA == 0){
-            SRoti.setVelXYR(0,0,0);
+            Roti.setVelXYR(0,0,0);
             SHardware.cleste1.setPosition(0);
             SHardware.cleste2.setPosition(1);
             if(pozitie_lift <=LIMITARE_SUS_LIFT) {
@@ -58,7 +55,7 @@ public class Autonumoie_Rosu {
         }
 
         if(FAZA == 1){
-            SRoti.setVelY(-0.25f);
+            Roti.setVelY(-0.25f);
             if(et.seconds() > 0.6){
                 FAZA++;
                 et.reset();
@@ -66,7 +63,7 @@ public class Autonumoie_Rosu {
         }
 
         if(FAZA == 2){
-            SRoti.setVelXYR(0,0,0);
+            Roti.setVelXYR(0,0,0);
             SHardware.cleste1.setPosition(0.15);
             SHardware.cleste2.setPosition(0.85);
             if(et.seconds() > 0.6) {
@@ -85,16 +82,16 @@ public class Autonumoie_Rosu {
 
         }
         if(FAZA == 4){
-            SRoti.setVelY(0.2f);
+            Roti.setVelY(0.2f);
             if(et.seconds() > 0.5){
                 FAZA++;
                 et.reset();
             }
         }
         if(FAZA == 5){
-            SRoti.setVelXY(-0.4f, 0.1f);
+            Roti.setVelXY(-0.4f, 0.1f);
             if(et.seconds() > 1.6){
-                SRoti.setVelXYR(0, 0, 0);
+                Roti.setVelXYR(0, 0, 0);
                 FAZA++;
                 et.reset();
             }
@@ -118,7 +115,7 @@ public class Autonumoie_Rosu {
 
 
         if (FAZA == 7) {
-            SRoti.setVelXYR(0, 0, 0);
+            Roti.setVelXYR(0, 0, 0);
             lift1.setPower(0);
             lift2.setPower(0);
 
@@ -131,7 +128,7 @@ public class Autonumoie_Rosu {
     public static void stop(){
         et = null;
         FAZA = 0;
-        SRoti.setVelXYR(0,0,0);
+        Roti.setVelXYR(0,0,0);
     }
 
 }

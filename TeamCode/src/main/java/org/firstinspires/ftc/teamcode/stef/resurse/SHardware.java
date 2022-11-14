@@ -18,7 +18,7 @@ public class SHardware {
     public static DcMotor ss, sf, ds, df,
                           lift1, lift2;
 
-    public static CRServo intake1, intake2;
+    public static Servo intake;
 
     public static BNO055IMU imu;
 
@@ -53,11 +53,11 @@ public class SHardware {
         lift1 = (DcMotor) opMode.hardwareMap.get("lift1");
         lift2 = (DcMotor) opMode.hardwareMap.get("lift2");
 
+        lift1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         lift2.setDirection(DcMotorSimple.Direction.REVERSE);
 
         //servo cleste
-        intake1 = (CRServo) opMode.hardwareMap.get("intake1");
-        intake2 = (CRServo) opMode.hardwareMap.get("intake2");
+        intake = (Servo) opMode.hardwareMap.get("intake");
 
         telemetry = opMode.telemetry;
 

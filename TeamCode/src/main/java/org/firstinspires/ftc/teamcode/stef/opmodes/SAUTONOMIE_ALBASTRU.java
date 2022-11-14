@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.stef.resurse.Autonomie_Albastru;
 import org.firstinspires.ftc.teamcode.stef.resurse.SHardware;
-import org.firstinspires.ftc.teamcode.stef.resurse.SRoti;
+import org.firstinspires.ftc.teamcode.stef.resurse.drives.Roti;
 
 import org.firstinspires.ftc.teamcode.stef.resurse.Autonumoie_Rosu;
 
@@ -37,7 +37,7 @@ public class SAUTONOMIE_ALBASTRU extends LinearOpMode {
         while(!isStopRequested()){
 
             Autonomie_Albastru.loop(this);
-            SRoti.loop(this);
+            Roti.loop(this);
             // AutonAprilTagDetection.loop(this);
             telemetry.update();
         }

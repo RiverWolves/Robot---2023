@@ -1,10 +1,11 @@
-package org.firstinspires.ftc.teamcode.stef.resurse;
+package org.firstinspires.ftc.teamcode.stef.resurse.drives;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.teamcode.stef.resurse.SHardware;
 
-public class SRoti {
+public class Roti {
 
     public static double[] puteri = {0,0,0};//respectiv x, y ,r(rotatie)
 
