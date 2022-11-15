@@ -9,6 +9,7 @@ import org.firstinspires.ftc.teamcode.stef.opmodes.STeleop;
 import org.firstinspires.ftc.teamcode.stef.resurse.drives.Ceva;
 import org.firstinspires.ftc.teamcode.stef.resurse.drives.Intake;
 import org.firstinspires.ftc.teamcode.stef.resurse.drives.Lift;
+import org.firstinspires.ftc.teamcode.stef.resurse.drives.Roti;
 
 
 public class SGamepad {
@@ -38,18 +39,22 @@ public class SGamepad {
         x = Ceva.fineControl(fc_roti, gamepad1.left_stick_x);            //setam puterea lui x
         y = Ceva.fineControl(fc_roti, gamepad1.left_stick_y);           //setam puterea lui y
         r = Ceva.fineControl(fc_roti, gamepad1.right_stick_x);         //setam puterea lui r
-        STeleop.mecanum.setWeightedDrivePower(new Pose2d(x, y, r));           //atribuim puterile
+        Roti.setVelXYR(x, y, r);
+//        STeleop.mecanum.setWeightedDrivePower(new Pose2d(x, y, r));           //atribuim puterile
 
         //Lift
-        putere_lift = Ceva.fineControl(fc_lift, gamepad2.left_stick_y);   //setam puterea liftului
-        Lift.setVal(gamepad2.left_stick_y, putere_lift);                 //atribuim stikul si puterea liftului
+        Lift.setVal(-gamepad2.left_stick_y,     //atribuim stick-ul
+                     gamepad2.cross,            //nivel 0
+                     gamepad2.circle,           //nivel 1
+                     gamepad2.triangle,         //nivel 2
+                     gamepad2.square);          //nivel 3
 
         //Intake
         boolean buton = Ceva.buttonToSwich(gamepad2.right_bumper);   //transformam bumperul in switch
         Intake.setVal(buton);                                       //setam starea intake-ului
 
 
-        opMode.telemetry.addData("buton: ", buton);
-        opMode.telemetry.update();
+//        opMode.telemetry.addData("buton: ", buton);
+//        opMode.telemetry.update();
     }
 }

@@ -49,7 +49,7 @@ public class SHardware {
         lift2 = (DcMotor) opMode.hardwareMap.get("lift2");
 
         lift1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        lift2.setDirection(DcMotorSimple.Direction.REVERSE);
+        lift1.setDirection(DcMotorSimple.Direction.REVERSE);
 
         //servo cleste
         intake = (Servo) opMode.hardwareMap.get("intake");
