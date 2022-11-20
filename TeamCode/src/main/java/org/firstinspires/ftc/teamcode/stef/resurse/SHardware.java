@@ -8,6 +8,9 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.openftc.easyopencv.OpenCvCamera;
+import org.openftc.easyopencv.OpenCvCameraFactory;
 
 public class SHardware {
 
@@ -19,6 +22,7 @@ public class SHardware {
     public static Servo intake;
 
     public static BNO055IMU imu;
+    public static OpenCvCamera camera;
 
     public static Telemetry telemetry;
 
@@ -48,8 +52,17 @@ public class SHardware {
         lift1 = (DcMotor) opMode.hardwareMap.get("lift1");
         lift2 = (DcMotor) opMode.hardwareMap.get("lift2");
 
+        lift1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         lift1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        lift1.setDirection(DcMotorSimple.Direction.REVERSE);
+        lift1.setDirection(DcMotor.Direction.REVERSE);
+
+
+        int cameraMonitorViewId = opMode.hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", opMode.hardwareMap.appContext.getPackageName());
+        camera = OpenCvCameraFactory.getInstance().createWebcam(opMode.hardwareMap.get(WebcamName.class, "webcam"), cameraMonitorViewId);
+
+
+
+
 
         //servo cleste
         intake = (Servo) opMode.hardwareMap.get("intake");

@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.stef.resurse.SHardware;
 
 public class Lift {
 
-    private static final float LIMITARE_SUS_LIFT = 3800,
+    private static final int LIMITARE_SUS_LIFT = 3800,
                          NIVEL_0 = 100,
                          NIVEL_1 = 1000,
                          NIVEL_2 = 2000,
@@ -16,30 +16,73 @@ public class Lift {
     private static final float LIMITARE_JOS_LIFT = 50;
 
     private static float y = 0;
-    private static final float putere = 1;
+    private static float putere = 1;
+    private static float pow_nivel = 0.4f;
 
     private static DcMotor lift1 = null,
                            lift2 = null;
-    public static boolean enivel = false,
-                          nivel0 = false,
-                          nivel1 = false,
-                          nivel2 = false,
-                          nivel3 = false;
 
-    public static int nivel;
+    public static boolean enivel = false,
+            nivel0 = false,
+            nivel1 = false,
+            nivel2 = false,
+            nivel3 = false;
+
+    public static int nivel = 0,
+                      target = 0;
+
+public static  void init(){
+    if (!SHardware.initializat) return;
+    if (lift1 == null) {
+        lift1 = SHardware.lift1;
+    }
+    if (lift2 == null) {
+        lift2 = SHardware.lift2;
+    }
+    lift1.setTargetPosition(0);
+    lift2.setTargetPosition(0);
+    lift1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    lift2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+}
 
     public static void loop(OpMode opMode){
 
-        if (!SHardware.initializat) return;
-        if (lift1 == null) {
-            lift1 = SHardware.lift1;
-        }else if (lift2 == null) {
-            lift2 = SHardware.lift2;
-        }
-
         float input = y;
         float pozitie_lift = lift1.getCurrentPosition();
-        int sens;
+
+        if (input > 0.3f && pozitie_lift < LIMITARE_SUS_LIFT) {
+            putere = 1;
+        } else if (input < -0.3f && pozitie_lift > LIMITARE_JOS_LIFT) {
+           putere = -1;
+        } else {
+            putere = 0;
+        }
+
+        putere = Ceva.fineControl(opMode.gamepad2.left_bumper, putere);
+
+        if (input != 0) {
+            lift1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            lift2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+            lift1.setPower(putere);
+            lift2.setPower(putere);
+        }
+
+        if (input > 0.3f && pozitie_lift >= LIMITARE_SUS_LIFT){
+            Ceva.rumble(opMode.gamepad2);
+        }else if (input < -0.3f && pozitie_lift <= LIMITARE_JOS_LIFT){
+            Ceva.rumble(opMode.gamepad2);
+        }
+
+
+        opMode.telemetry.addData("input lift: ", input);
+        opMode.telemetry.addData("pozitie lift: ", pozitie_lift);
+
+    }
+
+    public static void nivelLoop(OpMode opMode){
+
+        int poz_lift = lift1.getCurrentPosition();
 
         if (nivel0){
             nivel = 0;
@@ -49,180 +92,70 @@ public class Lift {
             nivel = 2;
         }else if (nivel3){
             nivel = 3;
+        }
+
+
+        if (y == 0) {
+            if (nivel0) {
+                target = NIVEL_0;
+                pow_nivel = 0.4f;
+
+            } else if (nivel1) {
+                target = NIVEL_1;
+                pow_nivel = 0.4f;
+
+            } else if (nivel2) {
+                target = NIVEL_2;
+                pow_nivel = 0.4f;
+
+            } else if (nivel3) {
+                target = NIVEL_3;
+                pow_nivel = 0.4f;
+
+            }
         }else{
-            nivel = 4;
+            target = 0;
+            pow_nivel = 0;
         }
 
+        lift1.setTargetPosition(target);
 
-        if (nivel == 0){
-            if (pozitie_lift <= NIVEL_0){
-                sens = 1;
-            }else {
-                sens = -1;
-            }
+        if (y == 0) {
+            lift1.setPower(pow_nivel);
+            lift2.setPower(pow_nivel);
 
-            if (pozitie_lift <= NIVEL_0+200 && pozitie_lift >= NIVEL_0-200){
-                enivel = true;
-                lift1.setPower(0);
-                lift2.setPower(0);
-            }else{
-                lift1.setPower(sens);
-                lift2.setPower(sens);
-                enivel = false;
-            }
-        }else if (nivel == 1){
-            if (pozitie_lift <= NIVEL_1){
-                sens = 1;
-            }else {
-                sens = -1;
-            }
-
-            if (pozitie_lift <= NIVEL_1+200 && pozitie_lift >= NIVEL_1-200){
-                enivel = true;
-                lift1.setPower(0);
-                lift2.setPower(0);
-            }else{
-                lift1.setPower(sens);
-                lift2.setPower(sens);
-                enivel = false;
-            }
-        }else if (nivel == 2){
-            if (pozitie_lift <= NIVEL_2){
-                sens = 1;
-            }else {
-                sens = -1;
-            }
-
-            if (pozitie_lift <= NIVEL_2+200 && pozitie_lift >= NIVEL_2-200){
-                enivel = true;
-                lift1.setPower(0);
-                lift2.setPower(0);
-            }else{
-                lift1.setPower(sens);
-                lift2.setPower(sens);
-                enivel = false;
-            }
-        }else if (nivel == 3){
-            if (pozitie_lift <= NIVEL_3){
-                sens = 1;
-            }else {
-                sens = -1;
-            }
-
-            if (pozitie_lift <= NIVEL_3+200 && pozitie_lift >= NIVEL_3-200){
-                enivel = true;
-                lift1.setPower(0);
-                lift2.setPower(0);
-            }else{
-                lift1.setPower(sens);
-                lift2.setPower(sens);
-                enivel = false;
-            }
+            lift1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            lift2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
 
-        if (input > 0.5f && pozitie_lift < LIMITARE_SUS_LIFT) {
-            lift1.setPower(putere);
-            lift2.setPower(putere);
-        } else if (input < -0.5f && pozitie_lift > LIMITARE_JOS_LIFT) {
-            lift1.setPower(-putere);
-            lift2.setPower(-putere);
+        if (poz_lift <= target+10 && poz_lift >= target-10){
+            pow_nivel = 0;
+            enivel = true;
         } else {
-            lift1.setPower(0);
-            lift2.setPower(0);
+            enivel = false;
         }
 
-        if (input > 0.5f && pozitie_lift >= LIMITARE_SUS_LIFT){
-            Ceva.rumble(opMode.gamepad2);
-        }else if (input < -0.5f && pozitie_lift <= LIMITARE_JOS_LIFT){
+        if (poz_lift <= target+10 && poz_lift >= target-10 && lift1.getPower() != 0){
             Ceva.rumble(opMode.gamepad2);
         }
 
-        opMode.telemetry.addData("input lift: ", input);
-        opMode.telemetry.addData("pozitie lift: ", pozitie_lift);
-        opMode.telemetry.addData("Nivel lift: ", nivel);
-        opMode.telemetry.addData("E nivel: ", enivel);
+
+        opMode.telemetry.addData("putere: ", lift1.getPower());
+        opMode.telemetry.addData("nivel: ", nivel);
+        opMode.telemetry.addData("Este nivel: ", enivel);
+
+
 
     }
 
     public static void setVal(float stick, boolean bool0, boolean bool1, boolean bool2, boolean bool3){
 
-        nivel0 = Ceva.longPress(bool0);
-        nivel1 = Ceva.longPress(bool1);
-        nivel2 = Ceva.longPress(bool2);
-        nivel3 = Ceva.longPress(bool3);
+        nivel0 = bool0;
+        nivel1 = bool1;
+        nivel2 = bool2;
+        nivel3 = bool3;
         y = stick;
 
     }
 
-   /* public static void setNivel(float nivel){
-        if (!SHardware.initializat) return;
-        if (lift1 == null) {
-            lift1 = SHardware.lift1;
-        }
-
-        putere = 0.4f;
-
-        if (nivel == 0){
-            LIMITARE_SUS_LIFT = 100;
-        }else if (nivel == 1){
-            LIMITARE_SUS_LIFT = 1000;
-        }else if (nivel == 2){
-            LIMITARE_SUS_LIFT = 2000;
-        }else{
-            LIMITARE_SUS_LIFT = 3800;
-        }
-
-        float pozitie_lift = lift1.getCurrentPosition();
-
-        if (pozitie_lift > LIMITARE_SUS_LIFT){
-            y = -1;
-        }else{
-            y = 1;
-        }
-        if (pozitie_lift <= LIMITARE_SUS_LIFT+200 && pozitie_lift >= LIMITARE_SUS_LIFT-200){
-            enivel = true;
-            y = 0;
-        }else{
-            enivel = false;
-        }
-    }
-
-    public static void setNivelTeleop(float nivel, boolean conditie){
-        if (!SHardware.initializat) return;
-        if (lift1 == null) {
-            lift1 = SHardware.lift1;
-        }
-        putere = 0.4f;
-
-        if (nivel == 0){
-            LIMITARE_SUS_LIFT = 100;
-        }else if (nivel == 1){
-            LIMITARE_SUS_LIFT = 1000;
-        }else if (nivel == 2){
-            LIMITARE_SUS_LIFT = 2000;
-        }else{
-            LIMITARE_SUS_LIFT = 3800;
-        }
-
-        float pozitie_lift = lift1.getCurrentPosition();
-
-        if (conditie) {
-            if (pozitie_lift > LIMITARE_SUS_LIFT) {
-                y = -1;
-            } else {
-                y = 1;
-            }
-        }
-
-        if (pozitie_lift <= LIMITARE_SUS_LIFT+200 && pozitie_lift >= LIMITARE_SUS_LIFT-200){
-            enivel = true;
-            y = 0;
-        }else{
-            enivel = false;
-        }
-
-    }
-
-
-    */
 }

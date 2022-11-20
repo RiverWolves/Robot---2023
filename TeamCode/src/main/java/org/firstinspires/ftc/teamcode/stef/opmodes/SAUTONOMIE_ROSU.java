@@ -8,8 +8,9 @@ import org.firstinspires.ftc.teamcode.stef.resurse.SHardware;
 import org.firstinspires.ftc.teamcode.stef.resurse.drives.Roti;
 
 import org.firstinspires.ftc.teamcode.stef.resurse.Autonumoie_Rosu;
+import org.firstinspires.ftc.teamcode.stef.resurse.tag.Tag;
 
-@Autonomous( name = "Autonomie_Rosu")
+@Autonomous( name = "hai ba te rog eu")
 public class SAUTONOMIE_ROSU extends LinearOpMode {
 
     @Override
@@ -25,9 +26,9 @@ public class SAUTONOMIE_ROSU extends LinearOpMode {
         //care este "this", adica clasa asta, intrucat extinde OpMode!!
         SHardware.init(this);
 
-       // AutonAprilTagDetection.init(this);
+        Tag.init();
 
-        Autonumoie_Rosu.init();
+//        Autonumoie_Rosu.init();
 
         //asteptam pana se apasa butonul de start!
         waitForStart();
@@ -35,10 +36,8 @@ public class SAUTONOMIE_ROSU extends LinearOpMode {
         //In loc de functia loop vom avea un while care se opreste cand apasam pe butonul de stop
         while(!isStopRequested()){
 
-            Autonumoie_Rosu.loop(this);
-            Roti.loop(this);
-           // AutonAprilTagDetection.loop(this);
-            telemetry.update();
+            Tag.getTag(this);
+
         }
 
 

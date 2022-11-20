@@ -34,6 +34,7 @@ public class SGamepad {
         Gamepad gamepad2 = opMode.gamepad2;
         fc_lift = gamepad2.left_bumper;    //conditie fine control lift
         fc_roti = gamepad1.left_bumper;   //conditie fine control roti
+        putere_lift = -gamepad2.left_stick_y;
 
         //Roti
         x = Ceva.fineControl(fc_roti, gamepad1.left_stick_x);            //setam puterea lui x
@@ -43,18 +44,18 @@ public class SGamepad {
 //        STeleop.mecanum.setWeightedDrivePower(new Pose2d(x, y, r));           //atribuim puterile
 
         //Lift
-        Lift.setVal(-gamepad2.left_stick_y,     //atribuim stick-ul
-                     gamepad2.cross,            //nivel 0
-                     gamepad2.circle,           //nivel 1
-                     gamepad2.triangle,         //nivel 2
-                     gamepad2.square);          //nivel 3
+        Lift.setVal(putere_lift,     //atribuim stick-ul
+                gamepad2.dpad_down,            //nivel 0
+                gamepad2.dpad_right,           //nivel 1
+                gamepad2.dpad_up,              //nivel 2
+                gamepad2.dpad_left);           //nivel 3
 
         //Intake
         boolean buton = Ceva.buttonToSwich(gamepad2.right_bumper);   //transformam bumperul in switch
         Intake.setVal(buton);                                       //setam starea intake-ului
 
 
-//        opMode.telemetry.addData("buton: ", buton);
+//        opMode.telemetry.addData("buton ", nivel0);
 //        opMode.telemetry.update();
     }
 }

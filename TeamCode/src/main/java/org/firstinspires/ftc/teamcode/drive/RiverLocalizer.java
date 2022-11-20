@@ -42,7 +42,7 @@ public class RiverLocalizer extends TwoTrackingWheelLocalizer {
     public static double PARALLEL_Y = 5.11811; // Y is the strafe direction
 
     public static double PERPENDICULAR_X = -7.08;
-    public static double PERPENDICULAR_Y = -0.511811;
+    public static double PERPENDICULAR_Y = 3.54331;
 
     // Parallel/Perpendicular to the forward axis
     // Parallel wheel is parallel to the forward axis
@@ -59,8 +59,8 @@ public class RiverLocalizer extends TwoTrackingWheelLocalizer {
 
         this.drive = drive;
 
-        parallelEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "parallelEncoder"));
-        perpendicularEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "perpendicularEncoder"));
+        parallelEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "par"));
+        perpendicularEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "per"));
 
         // TODO: reverse any encoders using Encoder.setDirection(Encoder.Direction.REVERSE)
     }
@@ -100,8 +100,8 @@ public class RiverLocalizer extends TwoTrackingWheelLocalizer {
         //  compensation method
 
         return Arrays.asList(
-                encoderTicksToInches(parallelEncoder.getRawVelocity()),
-                encoderTicksToInches(perpendicularEncoder.getRawVelocity())
+                encoderTicksToInches(parallelEncoder.getCorrectedVelocity()),
+                encoderTicksToInches(perpendicularEncoder.getCorrectedVelocity())
         );
     }
 }
