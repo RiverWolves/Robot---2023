@@ -26,7 +26,7 @@ public class SAUTONOMIE_ROSU extends LinearOpMode {
         //care este "this", adica clasa asta, intrucat extinde OpMode!!
         SHardware.init(this);
 
-        Tag.init();
+//        Tag.init();
 
 //        Autonumoie_Rosu.init();
 
@@ -36,7 +36,7 @@ public class SAUTONOMIE_ROSU extends LinearOpMode {
         //In loc de functia loop vom avea un while care se opreste cand apasam pe butonul de stop
         while(!isStopRequested()){
 
-            Tag.getTag(this);
+//            Tag.getTag(this);
 
         }
 

@@ -22,7 +22,7 @@ public class STeleop extends LinearOpMode {
         SHardware.init(this);
         SGamepad.init();
         Lift.init();
-//        mecanum = new SampleMecanumDrive(this.hardwareMap);
+//        mecanum = new SampleMecanumDrive(hardwareMap);
 
         waitForStart();
 

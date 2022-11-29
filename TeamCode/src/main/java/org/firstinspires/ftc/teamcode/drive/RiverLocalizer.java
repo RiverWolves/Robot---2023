@@ -63,6 +63,7 @@ public class RiverLocalizer extends TwoTrackingWheelLocalizer {
         perpendicularEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "per"));
 
         // TODO: reverse any encoders using Encoder.setDirection(Encoder.Direction.REVERSE)
+//        perpendicularEncoder.setDirection(Encoder.Direction.REVERSE);
     }
 
     public RiverLocalizer(@NonNull List<Pose2d> wheelPoses) {

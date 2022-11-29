@@ -5,12 +5,13 @@ import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.teamcode.mina.RWRobot;
 import org.openftc.easyopencv.OpenCvCamera;
-import org.openftc.easyopencv.OpenCvCameraFactory;
 
 public class SHardware {
 
@@ -22,12 +23,15 @@ public class SHardware {
     public static Servo intake;
 
     public static BNO055IMU imu;
-    public static OpenCvCamera camera;
+
+    public static WebcamName webcamName;
 
     public static Telemetry telemetry;
 
 
     public static void init(OpMode opMode){
+
+
         //GIROSCOP
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit           = BNO055IMU.AngleUnit.RADIANS;
@@ -39,6 +43,10 @@ public class SHardware {
 
         imu = opMode.hardwareMap.get(BNO055IMU.class, "imu");
         imu.initialize(parameters);
+
+        //camera
+
+        webcamName = opMode.hardwareMap.get(WebcamName.class, "webcam");
 
         //MOTOARE
         ss = (DcMotor) opMode.hardwareMap.get("ss");
@@ -55,13 +63,6 @@ public class SHardware {
         lift1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         lift1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         lift1.setDirection(DcMotor.Direction.REVERSE);
-
-
-        int cameraMonitorViewId = opMode.hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", opMode.hardwareMap.appContext.getPackageName());
-        camera = OpenCvCameraFactory.getInstance().createWebcam(opMode.hardwareMap.get(WebcamName.class, "webcam"), cameraMonitorViewId);
-
-
-
 
 
         //servo cleste
