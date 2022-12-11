@@ -58,6 +58,14 @@ public class Ceva {
         gamepad.runRumbleEffect(rum);
     }
 
+    public static float unghiServo (float ret)
+    {
+        float in_min = 0, out_max = 1, out_min = 0, in_max = 300;
+        ret = (ret - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+        return ret;
+    }
+
+
     public static float fineControl(boolean conditie, float in) {
         if(conditie){
             return in * constanta;

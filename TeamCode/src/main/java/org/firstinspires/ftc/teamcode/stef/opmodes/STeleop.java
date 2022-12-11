@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.stef.resurse.SGamepad;
 import org.firstinspires.ftc.teamcode.stef.resurse.SHardware;
+import org.firstinspires.ftc.teamcode.stef.resurse.drives.Brat;
 import org.firstinspires.ftc.teamcode.stef.resurse.drives.Intake;
 import org.firstinspires.ftc.teamcode.stef.resurse.drives.Lift;
 import org.firstinspires.ftc.teamcode.stef.resurse.drives.Roti;
@@ -22,6 +23,7 @@ public class STeleop extends LinearOpMode {
         SHardware.init(this);
         SGamepad.init();
         Lift.init();
+        Brat.init();
 //        mecanum = new SampleMecanumDrive(this.hardwareMap);
 
         waitForStart();
@@ -36,6 +38,7 @@ public class STeleop extends LinearOpMode {
             Lift.loop(this);
             Lift.nivelLoop(this);
             Intake.loop(this);
+            Brat.loop(this);
 
             telemetry.update();
         }
