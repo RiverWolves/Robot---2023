@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 
 
 import org.firstinspires.ftc.teamcode.stef.opmodes.STeleop;
+import org.firstinspires.ftc.teamcode.stef.resurse.drives.Brat;
 import org.firstinspires.ftc.teamcode.stef.resurse.drives.Ceva;
 import org.firstinspires.ftc.teamcode.stef.resurse.drives.Intake;
 import org.firstinspires.ftc.teamcode.stef.resurse.drives.Lift;
@@ -72,7 +73,9 @@ public class SGamepad {
         boolean buton = Ceva.buttonToSwich(gamepad2.right_bumper);   //transformam bumperul in switch
         Intake.setVal(buton);                                       //setam starea intake-ului
 
-
+        //Brat
+        boolean brat = Ceva.buttonToSwich(gamepad2.square);
+        Brat.SetVal(brat);
 //        opMode.telemetry.addData("buton ", nivel0);
 //        opMode.telemetry.update();
     }
