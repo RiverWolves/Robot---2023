@@ -7,11 +7,11 @@ import org.firstinspires.ftc.teamcode.stef.resurse.SHardware;
 
 public class Lift {
 
-    private static final int LIMITARE_SUS_LIFT = 3800,
+    private static final int LIMITARE_SUS_LIFT = 20000,
                          NIVEL_0 = 100,
                          NIVEL_1 = 1000,
                          NIVEL_2 = 2000,
-                         NIVEL_3 = 3800;
+                         NIVEL_3 = 3000;
 
     private static final float LIMITARE_JOS_LIFT = 50;
 

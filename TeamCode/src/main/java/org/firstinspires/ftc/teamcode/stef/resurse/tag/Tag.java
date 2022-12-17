@@ -5,20 +5,9 @@ import android.annotation.SuppressLint;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
+
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.teamcode.mina.RWConfig;
-import org.firstinspires.ftc.teamcode.mina.RWRobot;
-import org.firstinspires.ftc.teamcode.mina.camera.AprilTagDetectorPipeline;
-import org.firstinspires.ftc.teamcode.mina.camera.ConDetectorPipeline;
-import org.firstinspires.ftc.teamcode.mina.camera.RWOpenCV;
-import org.firstinspires.ftc.teamcode.mina.events.RWEvent;
-import org.firstinspires.ftc.teamcode.mina.events.opencv.ConEvent;
-import org.firstinspires.ftc.teamcode.mina.events.opencv.RecogEvent;
-import org.firstinspires.ftc.teamcode.mina.events.opencv.TagEvent;
-import org.firstinspires.ftc.teamcode.mina.utils.Telemetrie;
-import org.firstinspires.ftc.teamcode.stef.resurse.SHardware;
-import org.opencv.core.Rect;
+
 import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;

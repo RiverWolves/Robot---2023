@@ -21,7 +21,6 @@ import java.util.List;
  *    |
  *    v
  *    <----( y direction )---->
-
  *        (forward)
  *    /--------------\
  *    |     ____     |
@@ -38,11 +37,11 @@ public class RiverLocalizer extends TwoTrackingWheelLocalizer {
     public static double WHEEL_RADIUS = 1.1811; // in
     public static double GEAR_RATIO = 1; // output (wheel) speed / input (encoder) speed
 
-    public static double PARALLEL_X = 1.88976; // X is the up and down direction
-    public static double PARALLEL_Y = 5.11811; // Y is the strafe direction
+    public static double PARALLEL_X = -3.14961; // X is the up and down direction
+    public static double PARALLEL_Y = 3.93701; // Y is the strafe direction
 
-    public static double PERPENDICULAR_X = -7.08;
-    public static double PERPENDICULAR_Y = 3.54331;
+    public static double PERPENDICULAR_X = -7.283465;
+    public static double PERPENDICULAR_Y = -3.54331;
 
     // Parallel/Perpendicular to the forward axis
     // Parallel wheel is parallel to the forward axis
@@ -59,15 +58,12 @@ public class RiverLocalizer extends TwoTrackingWheelLocalizer {
 
         this.drive = drive;
 
-        parallelEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "par"));
-        perpendicularEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "per"));
+        parallelEncoder = new Encoder((DcMotorEx) hardwareMap.get("par"));
+        perpendicularEncoder = new Encoder((DcMotorEx) hardwareMap.get("per"));
 
         // TODO: reverse any encoders using Encoder.setDirection(Encoder.Direction.REVERSE)
-//        perpendicularEncoder.setDirection(Encoder.Direction.REVERSE);
-    }
-
-    public RiverLocalizer(@NonNull List<Pose2d> wheelPoses) {
-        super(wheelPoses);
+        parallelEncoder.setDirection(Encoder.Direction.REVERSE);
+        perpendicularEncoder.setDirection(Encoder.Direction.REVERSE);
     }
 
     public static double encoderTicksToInches(double ticks) {
@@ -101,8 +97,8 @@ public class RiverLocalizer extends TwoTrackingWheelLocalizer {
         //  compensation method
 
         return Arrays.asList(
-                encoderTicksToInches(parallelEncoder.getCorrectedVelocity()),
-                encoderTicksToInches(perpendicularEncoder.getCorrectedVelocity())
+                encoderTicksToInches(parallelEncoder.getRawVelocity()),
+                encoderTicksToInches(perpendicularEncoder.getRawVelocity())
         );
     }
 }

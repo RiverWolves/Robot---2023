@@ -44,8 +44,8 @@ public class SGamepad {
         r = Ceva.fineControl(fc_roti, gamepad1.right_stick_x);         //setam puterea lui r
         Roti.setVelXYR(x, y, r);
 
-/*
-        STeleop.mecanum.setWeightedDrivePower(new Pose2d(
+
+     /*   STeleop.mecanum.setWeightedDrivePower(new Pose2d(
                 x,
                 y,
                 Math.toRadians(Ceva.mapF(r, -1, 1, -90, 90)))
@@ -57,7 +57,9 @@ public class SGamepad {
                 -gamepad1.right_stick_x
                 )
         );
-*/
+
+
+      */
 
         //Lift
         Lift.setVal(putere_lift,     //atribuim stick-ul

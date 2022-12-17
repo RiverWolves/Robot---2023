@@ -20,7 +20,7 @@ public class SHardware {
     public static DcMotor ss, sf, ds, df,
                           lift1, lift2;
 
-    public static Servo intake;
+    public static Servo intake1, intake2;
 
     public static BNO055IMU imu;
 
@@ -66,7 +66,8 @@ public class SHardware {
 
 
         //servo cleste
-        intake = (Servo) opMode.hardwareMap.get("intake");
+        intake1 = (Servo) opMode.hardwareMap.get("intake1");
+        intake2 = (Servo) opMode.hardwareMap.get("intake2");
 
         telemetry = opMode.telemetry;
 

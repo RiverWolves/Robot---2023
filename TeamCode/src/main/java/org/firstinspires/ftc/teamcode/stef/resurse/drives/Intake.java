@@ -7,21 +7,26 @@ import org.firstinspires.ftc.teamcode.stef.resurse.SHardware;
 
 public class Intake {
 
-    private static Servo intake = null;
+    private static Servo intake1, intake2 = null;
     private static boolean inchis = false;
 
     public static void loop(OpMode opMode){
 
         if (!SHardware.initializat) return;
-        if (intake == null) {
-            intake = SHardware.intake;
+        if (intake1 == null) {
+            intake1 = SHardware.intake1;
+        }
+        if (intake2 == null) {
+            intake2 = SHardware.intake2;
         }
         boolean einchis = inchis;
 
         if (einchis){
-            intake.setPosition(1);
+            intake1.setPosition(1);
+            intake2.setPosition(0);
         }else{
-            intake.setPosition(0);
+            intake1.setPosition(0.7);
+            intake2.setPosition(0.3);
         }
 
         opMode.telemetry.addData("intake inchis: ", einchis);
