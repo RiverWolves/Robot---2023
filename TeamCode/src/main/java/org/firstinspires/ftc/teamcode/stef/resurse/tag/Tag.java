@@ -1,20 +1,14 @@
 package org.firstinspires.ftc.teamcode.stef.resurse.tag;
 
-import android.annotation.SuppressLint;
-
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-
 import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Tag {
 
@@ -95,7 +89,6 @@ public class Tag {
             if (tagOfInterest.id == STANGA) {
                 opMode.telemetry.addLine("Tag stanga");
 
-
             } else if (tagOfInterest.id == MIJLOC) {
                 opMode.telemetry.addLine("Tag mijloc");
 
@@ -108,6 +101,10 @@ public class Tag {
         }
 
 
+    }
+
+    public static int tag(){
+        return tagOfInterest.id;
     }
 
 

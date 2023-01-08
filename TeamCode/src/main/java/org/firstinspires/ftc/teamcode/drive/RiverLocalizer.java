@@ -59,11 +59,11 @@ public class RiverLocalizer extends TwoTrackingWheelLocalizer {
         this.drive = drive;
 
         parallelEncoder = new Encoder((DcMotorEx) hardwareMap.get("par"));
-        perpendicularEncoder = new Encoder((DcMotorEx) hardwareMap.get("per"));
+        perpendicularEncoder = new Encoder((DcMotorEx) hardwareMap.get("brat"));
 
         // TODO: reverse any encoders using Encoder.setDirection(Encoder.Direction.REVERSE)
-        parallelEncoder.setDirection(Encoder.Direction.REVERSE);
-        perpendicularEncoder.setDirection(Encoder.Direction.REVERSE);
+//        parallelEncoder.setDirection(Encoder.Direction.REVERSE);
+//        perpendicularEncoder.setDirection(Encoder.Direction.REVERSE);
     }
 
     public static double encoderTicksToInches(double ticks) {

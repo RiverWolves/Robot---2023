@@ -19,11 +19,15 @@ public class TestRoadRunner extends LinearOpMode {
                 .splineTo(new Vector2d(25, 25), 0)
                 .build();
 
+        Trajectory traj2 = drive.trajectoryBuilder(new Pose2d())
+                .forward(25)
+                .build();
+
         waitForStart();
 
         if(isStopRequested()) return;
 
-        drive.followTrajectory(traj);
+        drive.followTrajectory(traj2);
 
     }
 }

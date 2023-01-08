@@ -1,11 +1,8 @@
 package org.firstinspires.ftc.teamcode.stef.resurse;
 
-import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
-
-import org.firstinspires.ftc.teamcode.stef.opmodes.STeleop;
 import org.firstinspires.ftc.teamcode.stef.resurse.drives.Brat;
 import org.firstinspires.ftc.teamcode.stef.resurse.drives.Ceva;
 import org.firstinspires.ftc.teamcode.stef.resurse.drives.Intake;
@@ -16,7 +13,9 @@ import org.firstinspires.ftc.teamcode.stef.resurse.drives.Roti;
 public class SGamepad {
     private static float x, y, r, putere_lift;
     private static boolean fc_roti,
-                           fc_lift;
+            fc_lift;
+
+    private static Ceva inchis, rotit = null;
 
 
 
@@ -28,10 +27,12 @@ public class SGamepad {
 
         fc_roti = false;
         fc_lift = false;
+        inchis = new Ceva();
+        rotit = new Ceva();
 
     }
 
-    public static void loop (OpMode opMode) {
+    public static void loop(OpMode opMode) {
 
         Gamepad gamepad1 = opMode.gamepad1;
         Gamepad gamepad2 = opMode.gamepad2;
@@ -67,15 +68,23 @@ public class SGamepad {
                 gamepad2.dpad_down,            //nivel 0
                 gamepad2.dpad_right,           //nivel 1
                 gamepad2.dpad_up,              //nivel 2
-                gamepad2.dpad_left);           //nivel 3
+                gamepad2.dpad_left             //nivel 3
+        );
 
         //Intake
-        boolean buton = Ceva.buttonToSwich(gamepad2.right_bumper);   //transformam bumperul in switch
-        Intake.setVal(buton);                                       //setam starea intake-ului
+        boolean buton1 = inchis.buttonToSwich(gamepad2.circle); //transformam bumperul in switch
+        boolean buton2 = rotit.buttonToSwich(gamepad2.square);
+
+        Intake.setInchis(buton1); //setam starea intake-ului
+
+        if(Lift.pozitie_lift > 200){
+            Brat.input(buton2);
+        }
 
         //Brat
-        boolean brat = Ceva.buttonToSwich(gamepad2.square);
-        Brat.SetVal(brat);
+//        boolean brat = Ceva.buttonToSwich(gamepad2.square);
+
+
 //        opMode.telemetry.addData("buton ", nivel0);
 //        opMode.telemetry.update();
     }

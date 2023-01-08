@@ -33,7 +33,6 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.view.View;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
@@ -67,7 +66,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
  * Remove or comment out the @Disabled line to add this Op Mode to the Driver Station OpMode list
  */
 @TeleOp(name = "Sensor: Color", group = "Sensor")
-@Disabled
+
 public class SensorColor extends LinearOpMode {
 
   /** The colorSensor field will contain a reference to our color sensor hardware object */
@@ -202,6 +201,7 @@ public class SensorColor extends LinearOpMode {
               .addData("Saturation", "%.3f", hsvValues[1])
               .addData("Value", "%.3f", hsvValues[2]);
       telemetry.addData("Alpha", "%.3f", colors.alpha);
+
 
       /* If this color sensor also has a distance sensor, display the measured distance.
        * Note that the reported distance is only useful at very close range, and is impacted by

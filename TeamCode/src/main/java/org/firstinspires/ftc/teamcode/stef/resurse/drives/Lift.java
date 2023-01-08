@@ -3,21 +3,23 @@ package org.firstinspires.ftc.teamcode.stef.resurse.drives;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+
 import org.firstinspires.ftc.teamcode.stef.resurse.SHardware;
 
 public class Lift {
 
-    private static final int LIMITARE_SUS_LIFT = 20000,
+    private static final int LIMITARE_SUS_LIFT = 2700,
                          NIVEL_0 = 100,
                          NIVEL_1 = 1000,
                          NIVEL_2 = 2000,
-                         NIVEL_3 = 3000;
+                         NIVEL_3 = 2700;
 
     private static final float LIMITARE_JOS_LIFT = 50;
 
     private static float y = 0;
     private static float putere = 1;
     private static float pow_nivel = 0.4f;
+    public static float pozitie_lift = 0;
 
     private static DcMotor lift1 = null,
                            lift2 = null;
@@ -29,7 +31,7 @@ public class Lift {
             nivel3 = false;
 
     public static int nivel = 0,
-                      target = 0;
+                      target = 1;
 
 public static  void init(){
     if (!SHardware.initializat) return;
@@ -48,7 +50,7 @@ public static  void init(){
     public static void loop(OpMode opMode){
 
         float input = y;
-        float pozitie_lift = lift1.getCurrentPosition();
+        pozitie_lift = lift1.getCurrentPosition();
 
         if (input > 0.3f && pozitie_lift < LIMITARE_SUS_LIFT) {
             putere = 1;
@@ -75,6 +77,8 @@ public static  void init(){
         }
 
 
+
+
         opMode.telemetry.addData("input lift: ", input);
         opMode.telemetry.addData("pozitie lift: ", pozitie_lift);
 
@@ -98,19 +102,19 @@ public static  void init(){
         if (y == 0) {
             if (nivel0) {
                 target = NIVEL_0;
-                pow_nivel = 0.4f;
+                pow_nivel = 0.6f;
 
             } else if (nivel1) {
                 target = NIVEL_1;
-                pow_nivel = 0.4f;
+                pow_nivel = 0.6f;
 
             } else if (nivel2) {
                 target = NIVEL_2;
-                pow_nivel = 0.4f;
+                pow_nivel = 0.6f;
 
             } else if (nivel3) {
                 target = NIVEL_3;
-                pow_nivel = 0.4f;
+                pow_nivel = 0.6f;
 
             }
         }else{
@@ -119,6 +123,8 @@ public static  void init(){
         }
 
         lift1.setTargetPosition(target);
+        lift2.setTargetPosition(target);
+
 
         if (y == 0) {
             lift1.setPower(pow_nivel);
@@ -126,6 +132,7 @@ public static  void init(){
 
             lift1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             lift2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
         }
 
         if (poz_lift <= target+10 && poz_lift >= target-10){
@@ -138,6 +145,8 @@ public static  void init(){
         if (poz_lift <= target+10 && poz_lift >= target-10 && lift1.getPower() != 0){
             Ceva.rumble(opMode.gamepad2);
         }
+
+
 
 
         opMode.telemetry.addData("putere: ", lift1.getPower());

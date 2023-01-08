@@ -7,32 +7,56 @@ import org.firstinspires.ftc.teamcode.stef.resurse.SHardware;
 
 public class Intake {
 
-    private static Servo intake1, intake2 = null;
-    private static boolean inchis = false;
+    private static Servo intake, rotire = null;
+    public static boolean inchis;
+    public static boolean rotit;
+
+    public static void init(){
+        if (!SHardware.initializat) return;
+//
+        inchis = false;
+        rotit = false;
+
+        intake = SHardware.intake;
+        rotire = SHardware.rotire;
+        intake.setPosition(1);
+        rotire.setPosition(1);
+
+    }
 
     public static void loop(OpMode opMode){
 
-        if (!SHardware.initializat) return;
-        if (intake1 == null) {
-            intake1 = SHardware.intake1;
-        }
-        if (intake2 == null) {
-            intake2 = SHardware.intake2;
-        }
+
         boolean einchis = inchis;
+        boolean erotit = rotit;
 
-        if (einchis){
-            intake1.setPosition(1);
-            intake2.setPosition(0);
-        }else{
-            intake1.setPosition(0.7);
-            intake2.setPosition(0.3);
+        if (einchis) {
+//            intake.setPosition(Ceva.servoToDegrees(300));
+            intake.setPosition(0.5);
+        }else {
+
+//            intake.setPosition(Ceva.servoToDegrees(250));
+            intake.setPosition(1);
         }
 
-        opMode.telemetry.addData("intake inchis: ", einchis);
+        if (erotit) {
+//            rotire.setPosition(Ceva.servoToDegrees(180));
+            rotire.setPosition(0.32);
+        }else {
+//            rotire.setPosition(Ceva.servoToDegrees(0));
+            rotire.setPosition(1);
+        }
+
+
+        opMode.telemetry.addData("intake", einchis);
+        opMode.telemetry.addData("rotire", erotit);
+
     }
 
-    public static void setVal(boolean stare){
-        inchis = stare;
+    public static void setInchis(boolean stare1){
+        inchis = stare1;
+    }
+    public static void setRotire(boolean stare2){
+        rotit = stare2;
     }
 }
