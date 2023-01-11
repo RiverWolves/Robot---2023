@@ -19,8 +19,6 @@ public class Brat {
 
     private static final float gain = 2f;
     private static float[] hsvValues = {0, 0, 0};
-    private static final int purple = Color.parseColor("#9933ff");
-    private static final int grey = Color.parseColor("#808080");
 
     private static View relativeLayout = null;
 
@@ -31,38 +29,34 @@ public class Brat {
     public static void init(){
         if(!SHardware.initializat) return;
 
-        color = SHardware.colorSensor;
+//
 
         brat = SHardware.brat;
         brat.setPower(0);
 
-        if (color instanceof SwitchableLight) {
-            ((SwitchableLight)color).enableLight(true);
-        }
-        color.setGain(gain);
-//        int relativeLayoutId = opMode.hardwareMap.appContext.getResources().getIdentifier("RelativeLayout", "id", opMode.hardwareMap.appContext.getPackageName());
-//        relativeLayout = ((Activity) opMode.hardwareMap.appContext).findViewById(relativeLayoutId);
+        brat.setTargetPosition(0);
+        brat.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
 
         ceva = new Ceva();
     }
 
     public static void loop(){
 
-        float rosu = color.getNormalizedColors().red;
-        float albastru = color.getNormalizedColors().blue;
-        float gri = color.getNormalizedColors().green;
+       if(in){
+           brat.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+           brat.setTargetPosition(50);
+
+       }
+       else if(!in){
+           brat.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+           brat.setTargetPosition(-50);
+       }
 
         Intake.setRotire(!in);
 
-        if (in && albastru < gri) {
-            brat.setPower(0.4);
-        }
-        else if (!in && rosu < gri) {
-            brat.setPower(-0.4);
-        }
-        else {
-            brat.setPower(0);
-        }
 
     }
 
@@ -70,18 +64,6 @@ public class Brat {
         in = ceva.buttonToSwich(buton);
     }
 
-    private static NormalizedRGBA color(){
 
-        NormalizedRGBA colors = color.getNormalizedColors();
-        Color.colorToHSV(colors.toColor(), hsvValues);
-
-//        relativeLayout.post(new Runnable() {
-//            public void run() {
-//                relativeLayout.setBackgroundColor(Color.HSVToColor(hsvValues));
-//            }
-//        });
-
-        return colors;
-    }
 
 }

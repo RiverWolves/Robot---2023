@@ -20,7 +20,7 @@ public class MeepMeeptTest {
                                 .splineTo(new Vector2d(-17.5, -12), Math.toRadians(120) )
                                 .waitSeconds(0.5)
 
-                                .splineTo(new Vector2d(-58, -12), Math.toRadians(180))
+                             /*   .splineTo(new Vector2d(-58, -12), Math.toRadians(180))
                                 .waitSeconds(0.5)
                                 .splineToConstantHeading(new Vector2d(-40, 0), Math.toRadians(270))
                                 .splineToConstantHeading(new Vector2d(-34, 0), Math.toRadians(180))
@@ -45,7 +45,7 @@ public class MeepMeeptTest {
                                 .waitSeconds(0.5)
                                 .splineToConstantHeading(new Vector2d(-40, 0), Math.toRadians(270))
                                 .splineToConstantHeading(new Vector2d(-34, 0), Math.toRadians(180))
-                                .waitSeconds(0.5)
+                                .waitSeconds(0.5)*/
 
                                 .build()
                 );

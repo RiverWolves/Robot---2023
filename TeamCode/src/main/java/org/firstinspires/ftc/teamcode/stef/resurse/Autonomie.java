@@ -32,9 +32,11 @@ public class Autonomie {
 
         SampleMecanumDrive drive = new SampleMecanumDrive(op.hardwareMap);
 
-        drive.trajectoryBuilder(new Pose2d())
+        /*drive.trajectoryBuilder(new Pose2d())
                 .forward(30)
-                .build();
+                .build(); */
+
+//        drive.trajectoryBuilder(new Pose2d(-24,))
 
     }
 }

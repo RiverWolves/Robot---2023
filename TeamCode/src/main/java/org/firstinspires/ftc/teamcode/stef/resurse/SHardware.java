@@ -20,7 +20,7 @@ public class SHardware {
 
     public static Servo intake, rotire;
 
-    public static NormalizedColorSensor colorSensor;
+//    public static NormalizedColorSensor colorSensor;
 
     public static BNO055IMU imu;
 
@@ -36,7 +36,7 @@ public class SHardware {
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit           = BNO055IMU.AngleUnit.RADIANS;
         parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
-        parameters.calibrationDataFile = "BNO055IMUCalibration.json";
+        parameters.calibrationDataFile = "AdafruitIMUCalibration.json";
         parameters.loggingEnabled      = true;
         parameters.loggingTag          = "IMU";
         parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
@@ -48,7 +48,7 @@ public class SHardware {
 //        webcamName = opMode.hardwareMap.get(WebcamName.class, "webcam");
 
         //color
-        colorSensor = (NormalizedColorSensor) opMode.hardwareMap.get("sensor_color");
+//        colorSensor = (NormalizedColorSensor) opMode.hardwareMap.get("sensor_color");
 
         //MOTOARE
         ss = (DcMotor) opMode.hardwareMap.get("ss");

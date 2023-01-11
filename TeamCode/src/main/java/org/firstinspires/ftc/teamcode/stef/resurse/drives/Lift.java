@@ -44,11 +44,12 @@ public static  void init(){
     lift1.setTargetPosition(0);
     lift2.setTargetPosition(0);
     lift1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-    lift2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
 }
 
     public static void loop(OpMode opMode){
 
+        float constanta =1;
         float input = y;
         pozitie_lift = lift1.getCurrentPosition();
 
@@ -64,10 +65,10 @@ public static  void init(){
 
         if (input != 0) {
             lift1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            lift2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
 
             lift1.setPower(putere);
-            lift2.setPower(putere);
+
         }
 
         if (input > 0.3f && pozitie_lift >= LIMITARE_SUS_LIFT){
@@ -75,6 +76,19 @@ public static  void init(){
         }else if (input < -0.3f && pozitie_lift <= LIMITARE_JOS_LIFT){
             Ceva.rumble(opMode.gamepad2);
         }
+
+
+        if(pozitie_lift < target){
+            constanta = 1;
+        }
+        else if(pozitie_lift > target){
+            constanta = -1;
+        }
+
+         if(lift1.isBusy()){
+             lift2.setPower(constanta * lift1.getPower());
+         }
+
 
 
 
@@ -128,10 +142,10 @@ public static  void init(){
 
         if (y == 0) {
             lift1.setPower(pow_nivel);
-            lift2.setPower(pow_nivel);
+
 
             lift1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            lift2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
 
         }
 
