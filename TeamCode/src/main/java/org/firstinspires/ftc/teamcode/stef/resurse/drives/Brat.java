@@ -15,30 +15,27 @@ import org.firstinspires.ftc.teamcode.stef.resurse.SHardware;
 public class Brat {
 
     private static DcMotor brat = null;
-    private static NormalizedColorSensor color = null;
 
     private static boolean in, previn;
 
-    private static final float gain = 2f;
-    private static float[] hsvValues = {0, 0, 0};
-
-    private static View relativeLayout = null;
-
     private static Ceva ceva = null;
 
-    private static ElapsedTime et = null;
+    private static ElapsedTime et = null, init = null;
+
+    public static int faza = 0;
 
 
 
     public static void init(){
         if(!SHardware.initializat) return;
 
-//
+        in = false;
+        previn = false;
+        ceva = new Ceva();
 
         brat = SHardware.brat;
         brat.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         brat.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
         brat.setPower(0);
 
         if (et == null) {
@@ -46,11 +43,11 @@ public class Brat {
             et.reset();
         }
 
-        previn = false;
+        if (init == null) {
+            init = new ElapsedTime();
+            init.reset();
+        }
 
-
-
-        ceva = new Ceva();
     }
 
     public static void loop(OpMode opMode){
@@ -76,6 +73,18 @@ public class Brat {
            Intake.setRotire(!in);
        }
 
+    }
+
+    public static void inceput(){
+        if (faza == 0) {
+            init.reset();
+            if (init.seconds() < 0.4){
+                brat.setPower(0.4);
+            }else {
+                brat.setPower(0);
+            }
+            faza++;
+        }
     }
 
     public static void input(boolean buton) {
