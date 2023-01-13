@@ -39,6 +39,7 @@ public class STeleop extends LinearOpMode {
             Roti.loop(this);
             Lift.loop(this);
             Lift.nivelLoop(this);
+            Brat.loop(this);
             Intake.loop(this);
 
             telemetry.update();

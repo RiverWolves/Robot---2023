@@ -20,7 +20,7 @@ public class TestRoadRunner extends LinearOpMode {
                 .build();
 
         Trajectory traj2 = drive.trajectoryBuilder(new Pose2d())
-                .forward(25)
+                .forward(5)
                 .build();
 
         waitForStart();

@@ -8,14 +8,13 @@ import org.firstinspires.ftc.teamcode.stef.resurse.SHardware;
 
 public class Lift {
 
-    private static final int LIMITARE_SUS_LIFT = 2700,
+    private static final int LIMITARE_SUS_LIFT = 3800,
                          NIVEL_0 = 100,
                          NIVEL_1 = 1000,
-                         NIVEL_2 = 2000,
-                         NIVEL_3 = 2700;
+                         NIVEL_2 = 2500,
+                         NIVEL_3 = 3800;
 
     private static final float LIMITARE_JOS_LIFT = 50;
-
     private static float y = 0;
     private static float putere = 1;
     private static float pow_nivel = 0.4f;
@@ -44,19 +43,20 @@ public static  void init(){
     lift1.setTargetPosition(0);
     lift2.setTargetPosition(0);
     lift1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    lift2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
 }
 
     public static void loop(OpMode opMode){
 
-        float constanta =1;
+
         float input = y;
         pozitie_lift = lift1.getCurrentPosition();
 
         if (input > 0.3f && pozitie_lift < LIMITARE_SUS_LIFT) {
-            putere = 1;
+            putere = 0.6f;
         } else if (input < -0.3f && pozitie_lift > LIMITARE_JOS_LIFT) {
-           putere = -1;
+           putere = -0.6f;
         } else {
             putere = 0;
         }
@@ -65,33 +65,20 @@ public static  void init(){
 
         if (input != 0) {
             lift1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            lift2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
 
             lift1.setPower(putere);
+            lift2.setPower(putere);
 
         }
+
 
         if (input > 0.3f && pozitie_lift >= LIMITARE_SUS_LIFT){
             Ceva.rumble(opMode.gamepad2);
         }else if (input < -0.3f && pozitie_lift <= LIMITARE_JOS_LIFT){
             Ceva.rumble(opMode.gamepad2);
         }
-
-
-        if(pozitie_lift < target){
-            constanta = 1;
-        }
-        else if(pozitie_lift > target){
-            constanta = -1;
-        }
-
-         if(lift1.isBusy()){
-             lift2.setPower(constanta * lift1.getPower());
-         }
-
-
-
-
 
         opMode.telemetry.addData("input lift: ", input);
         opMode.telemetry.addData("pozitie lift: ", pozitie_lift);
@@ -142,9 +129,11 @@ public static  void init(){
 
         if (y == 0) {
             lift1.setPower(pow_nivel);
+            lift2.setPower(pow_nivel);
 
 
             lift1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            lift2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
 
         }
@@ -161,8 +150,7 @@ public static  void init(){
         }
 
 
-
-
+        opMode.telemetry.addData("putere", lift2.getPower());
         opMode.telemetry.addData("putere: ", lift1.getPower());
         opMode.telemetry.addData("nivel: ", nivel);
         opMode.telemetry.addData("Este nivel: ", enivel);
@@ -179,6 +167,10 @@ public static  void init(){
         nivel3 = bool3;
         y = stick;
 
+    }
+
+    public static float getPoz(){
+      return pozitie_lift;
     }
 
 }

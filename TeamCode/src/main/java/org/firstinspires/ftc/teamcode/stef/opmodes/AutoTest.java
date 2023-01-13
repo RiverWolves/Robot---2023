@@ -2,30 +2,23 @@ package org.firstinspires.ftc.teamcode.stef.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-
-import org.firstinspires.ftc.teamcode.stef.resurse.SHardware;
-import org.firstinspires.ftc.teamcode.stef.resurse.tag.Tag;
+import org.firstinspires.ftc.teamcode.stef.resurse.Autonomie_AD;
+import org.firstinspires.ftc.teamcode.stef.resurse.tag.TagBase;
 
 @Autonomous(name = "Autonomie Test")
 public class AutoTest extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-
-
-//        SHardware.init(this);
-
-        Tag.init(this);
+        Autonomie_AD.init(this);
 
         waitForStart();
 
         while(!isStopRequested()){
-            Tag.update(this);
+            Autonomie_AD.loop(this);
             telemetry.update();
-
         }
-
-        Tag.stop();
+        TagBase.stop();
     }
 
 }

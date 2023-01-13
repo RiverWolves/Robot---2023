@@ -41,15 +41,15 @@ public class Intake {
 
         if (erotit) {
 //            rotire.setPosition(Ceva.servoToDegrees(180));
-            rotire.setPosition(0.32);
+            rotire.setPosition(1);
         }else {
 //            rotire.setPosition(Ceva.servoToDegrees(0));
-            rotire.setPosition(1);
+            rotire.setPosition(0.32);
         }
 
 
         opMode.telemetry.addData("intake", einchis);
-        opMode.telemetry.addData("rotire", erotit);
+        opMode.telemetry.addData("rotire", rotire.getPosition());
 
     }
 

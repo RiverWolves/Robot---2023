@@ -10,7 +10,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 
 import java.util.ArrayList;
 
-public class Tag {
+public class TagBase {
 
     public static OpenCvCamera camera;
     public static AprilTagDetectionPipeline aprilTagDetectionPipeline;
@@ -30,9 +30,9 @@ public class Tag {
     private static double tagsize = 0.166;
 
     private static int ID_TAG_OF_INTEREST = 18; // Tag ID 18 from the 36h11 family
-    private static int STANGA = 0;
-    private static int MIJLOC = 1;
-    private static int DREAPTA = 2;
+    private static int STANGA = 1;
+    private static int MIJLOC = 2;
+    private static int DREAPTA = 3;
 
     public static AprilTagDetection tagOfInterest = null;
 
@@ -85,18 +85,20 @@ public class Tag {
 
 
 
-            /* Actually do something useful */
-            if (tagOfInterest.id == STANGA) {
-                opMode.telemetry.addLine("Tag stanga");
 
-            } else if (tagOfInterest.id == MIJLOC) {
-                opMode.telemetry.addLine("Tag mijloc");
+                /* Actually do something useful */
+                if (tagOfInterest.id == STANGA) {
+                    opMode.telemetry.addLine("Tag stanga");
 
-            } else if (tagOfInterest.id == DREAPTA) {
-                opMode.telemetry.addLine("Tag dreapta");
+                } else if (tagOfInterest.id == MIJLOC) {
+                    opMode.telemetry.addLine("Tag mijloc");
+
+                } else if (tagOfInterest.id == DREAPTA) {
+                    opMode.telemetry.addLine("Tag dreapta");
+
+
 
             }
-
 
         }
 
@@ -104,6 +106,7 @@ public class Tag {
     }
 
     public static int tag(){
+
         return tagOfInterest.id;
     }
 

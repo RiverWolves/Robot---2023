@@ -73,11 +73,11 @@ public class SGamepad {
 
         //Intake
         boolean buton1 = inchis.buttonToSwich(gamepad2.circle); //transformam bumperul in switch
-        boolean buton2 = rotit.buttonToSwich(gamepad2.square);
+        boolean buton2 = rotit.buttonToSwich(gamepad2.right_bumper);
 
         Intake.setInchis(buton1); //setam starea intake-ului
 
-        if(Lift.pozitie_lift > 200){
+        if(Lift.getPoz() > 800){
             Brat.input(buton2);
         }
 
