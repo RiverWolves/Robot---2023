@@ -46,6 +46,8 @@ public class Autonomie_AD {
         TagBase.update(op);
         tag = TagBase.tag();
 
+        Brat.inceput();
+
         if (FAZA == 0){
             et.reset();
             Roti.setVelY(0.5);
@@ -83,7 +85,7 @@ public class Autonomie_AD {
             }
         }
 
-        if (FAZA == 2){
+        if (FAZA == 2 || tag == 1){
             Roti.setVelXYR(0, 0, 0);
         }
 

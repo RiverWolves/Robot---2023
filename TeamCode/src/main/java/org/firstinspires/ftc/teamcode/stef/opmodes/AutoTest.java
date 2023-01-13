@@ -12,7 +12,6 @@ public class AutoTest extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         Autonomie_AD.init(this);
 
-
         waitForStart();
 
         while(!isStopRequested()){
