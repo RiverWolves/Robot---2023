@@ -24,7 +24,7 @@ public class Brat {
 
     public static int faza = 0;
 
-
+    private static int target = 0;
 
     public static void init(){
         if(!SHardware.initializat) return;
@@ -51,7 +51,17 @@ public class Brat {
     }
 
     public static void loop(OpMode opMode){
+        if (in) {
+            brat_fata();
+        }
+        else {
+            brat_spate();
+        }
 
+        brat.setTargetPosition(target);
+        brat.setPower(0.4);
+        brat.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+/*
 
 
        if(in != previn){
@@ -84,13 +94,18 @@ public class Brat {
                 brat.setPower(0);
             }
             faza++;
-        }
+        }*/
     }
 
     public static void input(boolean buton) {
         in = buton;
     }
 
+    public static void brat_fata() {
+        target = 500;
+    }
 
-
+    public static void brat_spate() {
+        target = -500;
+    }
 }
