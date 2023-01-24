@@ -81,6 +81,7 @@ public class SGamepad {
             Brat.input(buton2);
         }
 
+
         //Brat
 //        boolean brat = Ceva.buttonToSwich(gamepad2.square);
 

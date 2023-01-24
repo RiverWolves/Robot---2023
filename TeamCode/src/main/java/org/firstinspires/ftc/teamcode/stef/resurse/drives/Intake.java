@@ -15,7 +15,7 @@ public class Intake {
         if (!SHardware.initializat) return;
 //
         inchis = false;
-        rotit = false;
+        rotit = true;
 
         intake = SHardware.intake;
         rotire = SHardware.rotire;

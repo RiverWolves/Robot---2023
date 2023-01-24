@@ -16,7 +16,7 @@ public class TestTeleop extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
 
-        SHardware.init(this);
+        SHardware.init(this, false);
         Brat.init();
 
         waitForStart();

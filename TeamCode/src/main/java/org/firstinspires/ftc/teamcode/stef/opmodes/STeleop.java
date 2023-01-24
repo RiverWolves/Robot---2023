@@ -19,7 +19,7 @@ public class STeleop extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
 
-        SHardware.init(this);
+        SHardware.init(this, false);
         Lift.init();
         Intake.init();
         Brat.init();

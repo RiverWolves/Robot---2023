@@ -51,50 +51,19 @@ public class Brat {
     }
 
     public static void loop(OpMode opMode){
-        if (in) {
+        if (!in) {
             brat_fata();
+            Intake.setRotire(!in);
         }
         else {
             brat_spate();
+            Intake.setRotire(in);
         }
 
         brat.setTargetPosition(target);
         brat.setPower(0.4);
         brat.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-/*
 
-
-       if(in != previn){
-           et.reset();
-           previn = !previn;
-       }
-
-       if (in && et.seconds() < 0.8){
-           brat.setPower(0.4);
-       }else if(!in && et.seconds() < 0.8){
-           brat.setPower(-0.4);
-       }else{
-           brat.setPower(0);
-       }
-
-       opMode.telemetry.addData("putere brat: ", brat.getPower());
-
-       if(et.seconds() > 0.6) {
-           Intake.setRotire(!in);
-       }
-
-    }
-
-    public static void inceput(){
-        if (faza == 0) {
-            init.reset();
-            if (init.seconds() < 0.4){
-                brat.setPower(0.4);
-            }else {
-                brat.setPower(0);
-            }
-            faza++;
-        }*/
     }
 
     public static void input(boolean buton) {
@@ -102,10 +71,21 @@ public class Brat {
     }
 
     public static void brat_fata() {
-        target = 500;
+        target = -600;
     }
 
     public static void brat_spate() {
-        target = -500;
+        target = 630;
+    }
+
+    public static void brat(OpMode op, float in){
+        if (in > 0.5){
+            brat.setPower(0.4);
+        }else if (in < -0.5){
+            brat.setPower(-0.4);
+        }else{
+            brat.setPower(0);
+        }
+        op.telemetry.addData("poz brat: ", brat.getCurrentPosition());
     }
 }

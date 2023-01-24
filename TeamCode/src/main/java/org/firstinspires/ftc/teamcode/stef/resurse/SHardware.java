@@ -29,7 +29,7 @@ public class SHardware {
     public static Telemetry telemetry;
 
 
-    public static void init(OpMode opMode){
+    public static void init(OpMode opMode, boolean auto) {
 
 
         //GIROSCOP
@@ -50,14 +50,17 @@ public class SHardware {
         //color
 //        colorSensor = (NormalizedColorSensor) opMode.hardwareMap.get("sensor_color");
 
-        //MOTOARE
-        ss = (DcMotor) opMode.hardwareMap.get("ss");
-        sf = (DcMotor) opMode.hardwareMap.get("sf");
-        ds = (DcMotor) opMode.hardwareMap.get("ds");
-        df = (DcMotor) opMode.hardwareMap.get("df");
+        if (!auto) {
+            //MOTOARE
 
-        ds.setDirection(DcMotorSimple.Direction.REVERSE);
-        df.setDirection(DcMotorSimple.Direction.REVERSE);
+            ss = (DcMotor) opMode.hardwareMap.get("ss");
+            sf = (DcMotor) opMode.hardwareMap.get("sf");
+            ds = (DcMotor) opMode.hardwareMap.get("ds");
+            df = (DcMotor) opMode.hardwareMap.get("df");
+
+            ds.setDirection(DcMotorSimple.Direction.REVERSE);
+            df.setDirection(DcMotorSimple.Direction.REVERSE);
+        }
 
         //MOTOARE LIFT
         lift1 = (DcMotor) opMode.hardwareMap.get("lift1");

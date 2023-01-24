@@ -16,7 +16,9 @@ public class MeepMeeptTest {
                 .followTrajectorySequence(drive ->
                         drive.trajectorySequenceBuilder(new Pose2d(-24, -62, Math.toRadians(90)))
                                 .forward(5)
+                                .waitSeconds(0.2)
                                 .splineToConstantHeading(new Vector2d(-10, -57), Math.toRadians(90))
+                                .waitSeconds(0.2)
                                 .splineTo(new Vector2d(-17.5, -12), Math.toRadians(120) )
                                 .waitSeconds(0.5)
 

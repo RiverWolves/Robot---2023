@@ -25,7 +25,7 @@ public class Autonomie_AD {
 
     public static void init (OpMode op){
 
-        SHardware.init(op);
+        SHardware.init(op, true);
         TagBase.init(op);
 
         Brat.init();

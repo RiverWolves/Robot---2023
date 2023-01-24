@@ -8,11 +8,11 @@ import org.firstinspires.ftc.teamcode.stef.resurse.SHardware;
 
 public class Lift {
 
-    private static final int LIMITARE_SUS_LIFT = 6800,
-                         NIVEL_0 = 200,
-                         NIVEL_1 = 2500,
-                         NIVEL_2 = 4400,
-                         NIVEL_3 = 6200;
+    public static final int LIMITARE_SUS_LIFT = 6800,
+                            NIVEL_0 = 200,
+                            NIVEL_1 = 2500,
+                            NIVEL_2 = 4400,
+                            NIVEL_3 = 6200;
 
     private static final float LIMITARE_JOS_LIFT = 120;
     private static float y = 0;
@@ -103,19 +103,19 @@ public static  void init(){
         if (y == 0) {
             if (nivel0) {
                 target = NIVEL_0;
-                pow_nivel = 0.6f;
+                pow_nivel = 1;
 
             } else if (nivel1) {
                 target = NIVEL_1;
-                pow_nivel = 0.6f;
+                pow_nivel = 1;
 
             } else if (nivel2) {
                 target = NIVEL_2;
-                pow_nivel = 0.6f;
+                pow_nivel = 1;
 
             } else if (nivel3) {
                 target = NIVEL_3;
-                pow_nivel = 0.6f;
+                pow_nivel = 1;
 
             }
         }else{
@@ -125,6 +125,7 @@ public static  void init(){
 
         lift1.setTargetPosition(target);
         lift2.setTargetPosition(target);
+
 
 
         if (y == 0) {
@@ -173,4 +174,17 @@ public static  void init(){
       return pozitie_lift;
     }
 
+    public static void setNivel(int nivel){
+
+      if(nivel == 0){
+          nivel0 = true;
+      }else if(nivel == 1){
+            nivel1 = true;
+      }else if(nivel == 2){
+            nivel2 = true;
+      }else if(nivel == 3){
+            nivel3 = true;
+      }
+    }
 }
+
