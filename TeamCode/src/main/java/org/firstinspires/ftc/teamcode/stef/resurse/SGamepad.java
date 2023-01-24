@@ -87,5 +87,7 @@ public class SGamepad {
 
 //        opMode.telemetry.addData("buton ", nivel0);
 //        opMode.telemetry.update();
+
+        opMode.telemetry.addData("ceva : ", SHardware.ss.getCurrentPosition()+" "+ SHardware.df.getCurrentPosition()+" "+ SHardware.sf.getCurrentPosition());
     }
 }

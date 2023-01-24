@@ -8,13 +8,13 @@ import org.firstinspires.ftc.teamcode.stef.resurse.SHardware;
 
 public class Lift {
 
-    private static final int LIMITARE_SUS_LIFT = 2000,
-                         NIVEL_0 = 100,
-                         NIVEL_1 = 1000,
-                         NIVEL_2 = 1500,
-                         NIVEL_3 = 2000;
+    private static final int LIMITARE_SUS_LIFT = 6800,
+                         NIVEL_0 = 200,
+                         NIVEL_1 = 2500,
+                         NIVEL_2 = 4400,
+                         NIVEL_3 = 6200;
 
-    private static final float LIMITARE_JOS_LIFT = 50;
+    private static final float LIMITARE_JOS_LIFT = 120;
     private static float y = 0;
     private static float putere = 1;
     private static float pow_nivel = 0.4f;
@@ -54,9 +54,9 @@ public static  void init(){
         pozitie_lift = lift1.getCurrentPosition();
 
         if (input > 0.3f && pozitie_lift < LIMITARE_SUS_LIFT) {
-            putere = 0.6f;
+            putere = 1;
         } else if (input < -0.3f && pozitie_lift > LIMITARE_JOS_LIFT) {
-           putere = -0.6f;
+           putere = -1;
         } else {
             putere = 0;
         }
