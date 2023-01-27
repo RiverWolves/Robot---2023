@@ -14,49 +14,60 @@ public class MeepMeeptTest {
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(30, 74, Math.toRadians(180), Math.toRadians(180), 11.99)
                 .followTrajectorySequence(drive ->
-                        drive.trajectorySequenceBuilder(new Pose2d(-24, -62, Math.toRadians(90)))
-                                .forward(5)
+                        drive.trajectorySequenceBuilder(new Pose2d(-33, -62, Math.toRadians(90)))
+                                .forward(2.5)
                                 .waitSeconds(0.2)
-                                .splineToConstantHeading(new Vector2d(-10, -57), Math.toRadians(90))
+
+                                .strafeRight(24)
                                 .waitSeconds(0.2)
-                                .splineTo(new Vector2d(-17.5, -12), Math.toRadians(120) )
+
+                                .splineTo(new Vector2d(-20, -8.8), Math.toRadians(120) )
                                 .waitSeconds(0.5)
-
-
+                                .back(4)
                                 .turn(Math.toRadians(60))
-                                .waitSeconds(0.5)
-
-
-//                                .forward(6)
-                                .splineTo(new Vector2d(-58, -12), Math.toRadians(180))
-                                .waitSeconds(1)
-                                .setReversed(true)
-                                .lineTo(new Vector2d(-48, -12))
-                                .splineTo(new Vector2d(-31, -12), Math.toRadians(60))
-                                .setReversed(false)
-                                .waitSeconds(0.5)
-
-
-                                .splineTo(new Vector2d(-48, -12), Math.toRadians(180))
-                                .lineTo(new Vector2d(-58, -12))
-                                .waitSeconds(1)
-                                .setReversed(true)
-                                .lineTo(new Vector2d(-48, -12))
-                                .splineTo(new Vector2d(-31, -12), Math.toRadians(60))
-                                .setReversed(false)
-                                .waitSeconds(0.5)
-
-                                .splineTo(new Vector2d(-48, -12), Math.toRadians(180))
-                                .lineTo(new Vector2d(-58, -12))
-                                .waitSeconds(1)
-                                .setReversed(true)
-                                .lineTo(new Vector2d(-48, -12))
-                                .splineTo(new Vector2d(-31, -12), Math.toRadians(60))
-                                .setReversed(false)
-                                .waitSeconds(0.5)
-
-                                .splineTo(new Vector2d(-48, -12), Math.toRadians(180))
-                                .lineTo(new Vector2d(-58, -12))
+//                                .forward(5)
+//                                .waitSeconds(0.2)
+////                                .splineToConstantHeading(new Vector2d(-10, -57), Math.toRadians(90))
+//                                .strafeRight(5)
+//                                .waitSeconds(0.2)
+//                                .splineTo(new Vector2d(-17.5, -12), Math.toRadians(120) )
+//                                .waitSeconds(0.5)
+//
+//
+//                                .turn(Math.toRadians(60))
+//                                .waitSeconds(0.5)
+//
+//
+////                                .forward(6)
+//                                .splineTo(new Vector2d(-58, -12), Math.toRadians(180))
+//                                .waitSeconds(1)
+//                                .setReversed(true)
+//                                .lineTo(new Vector2d(-48, -12))
+//                                .splineTo(new Vector2d(-31, -12), Math.toRadians(60))
+//                                .setReversed(false)
+//                                .waitSeconds(0.5)
+//
+//
+//                                .splineTo(new Vector2d(-48, -12), Math.toRadians(180))
+//                                .lineTo(new Vector2d(-58, -12))
+//                                .waitSeconds(1)
+//                                .setReversed(true)
+//                                .lineTo(new Vector2d(-48, -12))
+//                                .splineTo(new Vector2d(-31, -12), Math.toRadians(60))
+//                                .setReversed(false)
+//                                .waitSeconds(0.5)
+//
+//                                .splineTo(new Vector2d(-48, -12), Math.toRadians(180))
+//                                .lineTo(new Vector2d(-58, -12))
+//                                .waitSeconds(1)
+//                                .setReversed(true)
+//                                .lineTo(new Vector2d(-48, -12))
+//                                .splineTo(new Vector2d(-31, -12), Math.toRadians(60))
+//                                .setReversed(false)
+//                                .waitSeconds(0.5)
+//
+//                                .splineTo(new Vector2d(-48, -12), Math.toRadians(180))
+//                                .lineTo(new Vector2d(-58, -12))
 
                                 .build()
                 );

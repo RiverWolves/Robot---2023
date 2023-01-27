@@ -34,7 +34,7 @@ public class TagBase {
     private static int MIJLOC = 2;
     private static int DREAPTA = 3;
 
-    public static AprilTagDetection tagOfInterest = null;
+    public static int tagOfInterest = 2;
 
     public static boolean initializat = false;
 
@@ -72,12 +72,15 @@ public class TagBase {
 
         ArrayList<AprilTagDetection> currentDetections = aprilTagDetectionPipeline.getLatestDetections();
 
+        if (currentDetections.size() == 0){
+            tagOfInterest = 2;
+        }
         if (currentDetections.size() != 0) {
             boolean tagFound = false;
 
             for (AprilTagDetection tag : currentDetections) {
                 if (tag.id == STANGA || tag.id == MIJLOC || tag.id == DREAPTA) {
-                    tagOfInterest = tag;
+                    tagOfInterest = tag.id;
                     tagFound = true;
                     break;
                 }
@@ -87,13 +90,13 @@ public class TagBase {
 
 
                 /* Actually do something useful */
-                if (tagOfInterest.id == STANGA) {
+                if (tagOfInterest == STANGA) {
                     opMode.telemetry.addLine("Tag stanga");
 
-                } else if (tagOfInterest.id == MIJLOC) {
+                } else if (tagOfInterest == MIJLOC) {
                     opMode.telemetry.addLine("Tag mijloc");
 
-                } else if (tagOfInterest.id == DREAPTA) {
+                } else if (tagOfInterest == DREAPTA) {
                     opMode.telemetry.addLine("Tag dreapta");
 
 
@@ -106,11 +109,8 @@ public class TagBase {
     }
 
     public static int tag(){
-
-        return tagOfInterest.id;
+        return tagOfInterest;
     }
-
-
 
     public static void stop(){
         camera.stopStreaming();

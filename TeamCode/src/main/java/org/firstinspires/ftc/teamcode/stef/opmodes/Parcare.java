@@ -2,13 +2,11 @@ package org.firstinspires.ftc.teamcode.stef.opmodes;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
-import com.acmerobotics.roadrunner.trajectory.Trajectory;
-import com.acmerobotics.roadrunner.trajectory.constraints.TankVelocityConstraint;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.checkerframework.checker.units.qual.A;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.stef.resurse.SHardware;
 import org.firstinspires.ftc.teamcode.stef.resurse.drives.Brat;
@@ -17,11 +15,10 @@ import org.firstinspires.ftc.teamcode.stef.resurse.drives.Lift;
 import org.firstinspires.ftc.teamcode.stef.resurse.tag.TagBase;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
-@TeleOp(name = "test")
-public class TestRoadRunner extends LinearOpMode {
+@Autonomous( name = "amin" )
+public class Parcare extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
-
         SHardware.init(this, true);
         Lift.init();
         Intake.init();
@@ -36,7 +33,7 @@ public class TestRoadRunner extends LinearOpMode {
 
         drive.setPoseEstimate(new Pose2d(-33, -62, Math.toRadians(90)));
 
-        TrajectorySequence traj2 = drive.trajectorySequenceBuilder(new Pose2d(-33, -62, Math.toRadians(90)))
+        TrajectorySequence principala = drive.trajectorySequenceBuilder(new Pose2d(-33, -62, Math.toRadians(90)))
                 .forward(2.5)
                 .waitSeconds(0.2)
                 .addDisplacementMarker( () -> {
@@ -44,7 +41,7 @@ public class TestRoadRunner extends LinearOpMode {
                     Intake.loop(this);
 //                    Lift.setLiftLevel(3);
                 })
-                .strafeRight(25)
+                .strafeRight(24)
                 .waitSeconds(0.2)
 //                .addDisplacementMarker(()->{
 //                    Brat.brat_fata();
@@ -61,25 +58,23 @@ public class TestRoadRunner extends LinearOpMode {
                 })
                 .back(4)
                 .turn(Math.toRadians(60))
-                .waitSeconds(0.5)
-                .splineTo(new Vector2d(-62, -12), Math.toRadians(180))
-//                .waitSeconds(1)
-                .addDisplacementMarker(() ->{
-                    Intake.setInchis(false);
-                    Intake.loop(this);
-                })
-                .waitSeconds(0.5)
-//                .addDisplacementMarker( () -> {
-//
-//                    Lift.setLiftLevel(3);
-//                })
-                .setReversed(true)
-                .lineTo(new Vector2d(-47, -12))
-                .splineTo(new Vector2d(-31, -12), Math.toRadians(60))
-                .setReversed(false)
-                .waitSeconds(5)
-
                 .build();
+
+        TrajectorySequence first = drive.trajectorySequenceBuilder(principala.end())
+                .waitSeconds(0.5)
+                .splineTo(new Vector2d(-60, -12), Math.toRadians(180))
+                .build();
+
+        TrajectorySequence second = drive.trajectorySequenceBuilder(principala.end())
+                .waitSeconds(0.5)
+                .splineTo(new Vector2d(-35, -12), Math.toRadians(180))
+                .build();
+
+        TrajectorySequence third = drive.trajectorySequenceBuilder(principala.end())
+                .waitSeconds(0.5)
+                .back(7)
+                .build();
+
 
         while (opModeInInit()){
             TagBase.update(this);
@@ -92,7 +87,21 @@ public class TestRoadRunner extends LinearOpMode {
         et.reset();
 
         if (opModeIsActive()){
-            drive.followTrajectorySequence(traj2);
+            drive.followTrajectorySequence(principala);
+
+
+            switch (TagBase.tag()){
+                case 1:
+                    drive.followTrajectorySequence(first);
+                    break;
+                case 2:
+                    drive.followTrajectorySequence(second);
+                    break;
+                case 3:
+                    drive.followTrajectorySequence(third);
+                    break;
+
+            }
 
             telemetry.addData("sec: ", et.seconds());
             telemetry.update();
@@ -103,11 +112,5 @@ public class TestRoadRunner extends LinearOpMode {
             TagBase.stop();
             return;
         }
-
-
-
-
-
     }
-
 }

@@ -53,11 +53,11 @@ public class Brat {
     public static void loop(OpMode opMode){
         if (!in) {
             brat_fata();
-            Intake.setRotire(!in);
+//            Intake.setRotire(!in);
         }
         else {
             brat_spate();
-            Intake.setRotire(in);
+//            Intake.setRotire(in);
         }
 
         brat.setTargetPosition(target);
@@ -71,7 +71,7 @@ public class Brat {
     }
 
     public static void brat_fata() {
-        target = -600;
+        target = -650;
     }
 
     public static void brat_spate() {
