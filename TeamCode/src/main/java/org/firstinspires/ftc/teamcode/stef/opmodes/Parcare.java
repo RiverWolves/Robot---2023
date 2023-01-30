@@ -31,48 +31,78 @@ public class Parcare extends LinearOpMode {
 
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
-        drive.setPoseEstimate(new Pose2d(-33, -62, Math.toRadians(90)));
+        drive.setPoseEstimate(new Pose2d(-31.22, -62, Math.toRadians(90)));
 
-        TrajectorySequence principala = drive.trajectorySequenceBuilder(new Pose2d(-33, -62, Math.toRadians(90)))
+        TrajectorySequence principala = drive.trajectorySequenceBuilder(new Pose2d(-31.22, -62, Math.toRadians(90)))
                 .forward(2.5)
                 .waitSeconds(0.2)
                 .addDisplacementMarker( () -> {
                     Intake.setInchis(false);
                     Intake.loop(this);
-//                    Lift.setLiftLevel(3);
+                    Lift.setLiftLevel(3);
                 })
-                .strafeRight(24)
+                .strafeRight(23)
                 .waitSeconds(0.2)
 //                .addDisplacementMarker(()->{
 //                    Brat.brat_fata();
 //                    Brat.loop(this);
 //                })
-
-                .splineTo(new Vector2d(-20, -8.8), Math.toRadians(120) )
+//                .forward(10)
+                .lineTo(new Vector2d(-11, -30))
+                .splineTo(new Vector2d(-22, -8.8), Math.toRadians(120) )
 
                 .waitSeconds(0.5)
-                .addTemporalMarker(4,  ()->{
-                    Intake.setInchis(true);
-                    Intake.loop(this);
-//                    Lift.setLiftLevel(0);
+                .addDisplacementMarker(()->{
+                    Lift.setLiftLevel(0);
                 })
                 .back(4)
+                .waitSeconds(0.2)
                 .turn(Math.toRadians(60))
+                .splineTo(new Vector2d(-62, -12), Math.toRadians(180))
+                .addDisplacementMarker(() ->{
+                    Lift.setLiftLevel(3);
+                })
+                .waitSeconds(0.5)
+                .setReversed(true)
+                .lineTo(new Vector2d(-51, -12))
+                .splineTo(new Vector2d(-31, -11), Math.toRadians(60))
+                .waitSeconds(1.5)
+                .setReversed(false)
+                .addDisplacementMarker(() ->{
+                    Lift.setLiftLevel(0);
+                })
+                .splineTo(new Vector2d(-48, -11), Math.toRadians(180))
+                .splineTo(new Vector2d(-62, -12), Math.toRadians(180))
+                .addDisplacementMarker(()->{
+                    Lift.setLiftLevel(3);
+                })
+
+                .waitSeconds(0.5)
+                .setReversed(true)
+                .lineTo(new Vector2d(-51, -12))
+                .splineTo(new Vector2d(-31, -11), Math.toRadians(60))
+                .setReversed(false)
+                .waitSeconds(1.5)
+                .addDisplacementMarker(() ->{
+                    Lift.setLiftLevel(0);
+                })
+                .splineTo(new Vector2d(-48, -12), Math.toRadians(180))
+                .splineTo(new Vector2d(-62, -12), Math.toRadians(180))
                 .build();
 
         TrajectorySequence first = drive.trajectorySequenceBuilder(principala.end())
                 .waitSeconds(0.5)
-                .splineTo(new Vector2d(-60, -12), Math.toRadians(180))
+                .lineTo(new Vector2d(-60, -12))
                 .build();
 
         TrajectorySequence second = drive.trajectorySequenceBuilder(principala.end())
                 .waitSeconds(0.5)
-                .splineTo(new Vector2d(-35, -12), Math.toRadians(180))
+                .lineTo(new Vector2d(-35, -12))
                 .build();
 
         TrajectorySequence third = drive.trajectorySequenceBuilder(principala.end())
                 .waitSeconds(0.5)
-                .back(7)
+                .lineTo(new Vector2d(-12,-12))
                 .build();
 
 

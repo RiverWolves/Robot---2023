@@ -42,7 +42,7 @@ public class TestRoadRunner extends LinearOpMode {
                 .addDisplacementMarker( () -> {
                     Intake.setInchis(false);
                     Intake.loop(this);
-//                    Lift.setLiftLevel(3);
+                    Lift.setLiftLevel(3);
                 })
                 .strafeRight(25)
                 .waitSeconds(0.2)
