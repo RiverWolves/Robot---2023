@@ -33,7 +33,8 @@ public class Parcare extends LinearOpMode {
 
         drive.setPoseEstimate(new Pose2d(-31.22, -62, Math.toRadians(90)));
 
-        TrajectorySequence principala = drive.trajectorySequenceBuilder(new Pose2d(-31.22, -62, Math.toRadians(90)))
+        TrajectorySequence principala1 = drive.trajectorySequenceBuilder(new Pose2d(-31.22, -62, Math.toRadians(90)))
+               //Porneste
                 .forward(2.5)
                 .waitSeconds(0.2)
                 .addDisplacementMarker( () -> {
@@ -48,31 +49,36 @@ public class Parcare extends LinearOpMode {
 //                    Brat.loop(this);
 //                })
 //                .forward(10)
+                //Se aliniaza cu pilonul
                 .lineTo(new Vector2d(-11, -30))
-                .splineTo(new Vector2d(-22, -8.8), Math.toRadians(120) )
-
+                .splineTo(new Vector2d(-18, -8.8), Math.toRadians(120) )
+                // Pune con
                 .waitSeconds(0.5)
                 .addDisplacementMarker(()->{
                     Lift.setLiftLevel(0);
                 })
+                //Se aliniaza cu turnul de conuri
                 .back(4)
                 .waitSeconds(0.2)
                 .turn(Math.toRadians(60))
                 .splineTo(new Vector2d(-62, -12), Math.toRadians(180))
+                //Porneste spre pilon
                 .addDisplacementMarker(() ->{
                     Lift.setLiftLevel(3);
                 })
                 .waitSeconds(0.5)
                 .setReversed(true)
                 .lineTo(new Vector2d(-51, -12))
-                .splineTo(new Vector2d(-31, -11), Math.toRadians(60))
+                .splineTo(new Vector2d(-29, -11), Math.toRadians(60))
                 .waitSeconds(1.5)
+                //Se intoarce
                 .setReversed(false)
                 .addDisplacementMarker(() ->{
                     Lift.setLiftLevel(0);
                 })
                 .splineTo(new Vector2d(-48, -11), Math.toRadians(180))
                 .splineTo(new Vector2d(-62, -12), Math.toRadians(180))
+                //Porneste spre pilon
                 .addDisplacementMarker(()->{
                     Lift.setLiftLevel(3);
                 })
@@ -86,21 +92,64 @@ public class Parcare extends LinearOpMode {
                 .addDisplacementMarker(() ->{
                     Lift.setLiftLevel(0);
                 })
+                //Se intoarce
                 .splineTo(new Vector2d(-48, -12), Math.toRadians(180))
                 .splineTo(new Vector2d(-62, -12), Math.toRadians(180))
                 .build();
 
-        TrajectorySequence first = drive.trajectorySequenceBuilder(principala.end())
+        TrajectorySequence principala2 = drive.trajectorySequenceBuilder(new Pose2d(33, -62, Math.toRadians(90)))
+
+                                 //Iese din Start Point
+                                .forward(2.5)
+                                .waitSeconds(0.2)
+
+                                .strafeLeft(21.5)
+                                .waitSeconds(0.2)
+
+                                // In fata si se aliniaza sa puna conul.
+                                .lineTo(new Vector2d(11, -30))
+                                .splineTo(new Vector2d(18, -8.8), Math.toRadians(60) )
+                                //Pune con
+                                .waitSeconds(0.5)
+                                //Se aliniaza spre turnul de conuri.
+                                .back(4)
+                                .waitSeconds(0.2)
+                                .turn(Math.toRadians(-60))
+                                .splineTo(new Vector2d(62, -12), Math.toRadians(0))
+                                //Se intoarce sa puna con
+                                .waitSeconds(0.5)
+                                .setReversed(true)
+                                .lineTo(new Vector2d(51, -12))
+                                .splineTo(new Vector2d(29, -8.8), Math.toRadians(120))
+                                .waitSeconds(1.5)
+                                .setReversed(false)
+                                //Se aliniaza spre turnul de conuri.
+                                .splineTo(new Vector2d(48, -12), Math.toRadians(0))
+                                .splineTo(new Vector2d(62, -12), Math.toRadians(0))
+
+                                //Se intoarce sa puna con
+                                .waitSeconds(0.5)
+                                .setReversed(true)
+                                .lineTo(new Vector2d(51, -12))
+                                .splineTo(new Vector2d(29, -8.8), Math.toRadians(120))
+                                .setReversed(false)
+                                .waitSeconds(1.5)
+                                //Se aliniaza spre turnul de conuri.
+                                .splineTo(new Vector2d(48, -12), Math.toRadians(0))
+                                .splineTo(new Vector2d(62, -12), Math.toRadians(0))
+                                .build();
+
+        TrajectorySequence first = drive.trajectorySequenceBuilder(principala1.end())
                 .waitSeconds(0.5)
                 .lineTo(new Vector2d(-60, -12))
                 .build();
 
-        TrajectorySequence second = drive.trajectorySequenceBuilder(principala.end())
+        TrajectorySequence second = drive.trajectorySequenceBuilder(principala1.end())
                 .waitSeconds(0.5)
                 .lineTo(new Vector2d(-35, -12))
                 .build();
 
-        TrajectorySequence third = drive.trajectorySequenceBuilder(principala.end())
+        TrajectorySequence third = drive.trajectorySequenceBuilder(principala1.end())
                 .waitSeconds(0.5)
                 .lineTo(new Vector2d(-12,-12))
                 .build();
@@ -117,7 +166,7 @@ public class Parcare extends LinearOpMode {
         et.reset();
 
         if (opModeIsActive()){
-            drive.followTrajectorySequence(principala);
+            drive.followTrajectorySequence(principala1);
 
 
             switch (TagBase.tag()){

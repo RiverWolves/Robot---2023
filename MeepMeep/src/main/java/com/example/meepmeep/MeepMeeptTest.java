@@ -14,54 +14,110 @@ public class MeepMeeptTest {
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(30, 74, Math.toRadians(180), Math.toRadians(180), 11.99)
                 .followTrajectorySequence(drive ->
-                        drive.trajectorySequenceBuilder(new Pose2d(-33, -62, Math.toRadians(90)))
+                        drive.trajectorySequenceBuilder(new Pose2d(-31.22, -62, Math.toRadians(90)))
+
+
+
+                                //Porneste
                                 .forward(2.5)
                                 .waitSeconds(0.2)
-
-                                .strafeRight(25)
+                                .addDisplacementMarker( () -> {
+//                                    Intake.setInchis(false);
+//                                    Intake.loop(this);
+//                                    Lift.setLiftLevel(3);
+                                })
+                                .strafeRight(23)
                                 .waitSeconds(0.2)
 
+                                //Se aliniaza cu pilonul
                                 .lineTo(new Vector2d(-11, -30))
-
-                                .splineTo(new Vector2d(-20, -8.8), Math.toRadians(120) )
+                                .splineTo(new Vector2d(-18, -8.8), Math.toRadians(120) )
+                                // Pune con
                                 .waitSeconds(0.5)
+                                .addDisplacementMarker(()->{
+//                                    Lift.setLiftLevel(0);
+                                })
+                                //Se aliniaza cu turnul de conuri
                                 .back(4)
+                                .waitSeconds(0.2)
                                 .turn(Math.toRadians(60))
-
-
-
-                                .forward(6)
-                                .splineTo(new Vector2d(-58, -12), Math.toRadians(180))
-                                .waitSeconds(1)
-                                .setReversed(true)
-                                .lineTo(new Vector2d(-48, -12))
-                                .splineTo(new Vector2d(-31, -12), Math.toRadians(60))
-                                .setReversed(false)
+                                .splineTo(new Vector2d(-62, -12), Math.toRadians(180))
+                                //Porneste spre pilon
+                                .addDisplacementMarker(() ->{
+//                                    Lift.setLiftLevel(3);
+                                })
                                 .waitSeconds(0.5)
+                                .setReversed(true)
+                                .lineTo(new Vector2d(-51, -12))
+                                .splineTo(new Vector2d(-29, -11), Math.toRadians(60))
+                                .waitSeconds(1.5)
+                                //Se intoarce
+                                .setReversed(false)
+                                .addDisplacementMarker(() ->{
+//                                    Lift.setLiftLevel(0);
+                                })
+                                .splineTo(new Vector2d(-48, -11), Math.toRadians(180))
+                                .splineTo(new Vector2d(-62, -12), Math.toRadians(180))
+                                //Porneste spre pilon
+                                .addDisplacementMarker(()->{
+//                                    Lift.setLiftLevel(3);
+                                })
 
-
+                                .waitSeconds(0.5)
+                                .setReversed(true)
+                                .lineTo(new Vector2d(-51, -12))
+                                .splineTo(new Vector2d(-31, -11), Math.toRadians(60))
+                                .setReversed(false)
+                                .waitSeconds(1.5)
+                                .addDisplacementMarker(() ->{
+//                                    Lift.setLiftLevel(0);
+                                })
+                                //Se intoarce
                                 .splineTo(new Vector2d(-48, -12), Math.toRadians(180))
-                                .lineTo(new Vector2d(-58, -12))
-                                .waitSeconds(1)
-                                .setReversed(true)
-                                .lineTo(new Vector2d(-48, -12))
-                                .splineTo(new Vector2d(-31, -12), Math.toRadians(60))
-                                .setReversed(false)
-                                .waitSeconds(0.5)
-//
-//                                .splineTo(new Vector2d(-48, -12), Math.toRadians(180))
-//                                .lineTo(new Vector2d(-58, -12))
-//                                .waitSeconds(1)
-//                                .setReversed(true)
-//                                .lineTo(new Vector2d(-48, -12))
-//                                .splineTo(new Vector2d(-31, -12), Math.toRadians(60))
-//                                .setReversed(false)
-//                                .waitSeconds(0.5)
-//
-//                                .splineTo(new Vector2d(-48, -12), Math.toRadians(180))
-//                                .lineTo(new Vector2d(-58, -12))
-
+                                .splineTo(new Vector2d(-62, -12), Math.toRadians(180))
                                 .build()
+
+
+//                                //Iese din Start Point
+//                                .forward(2.5)
+//                                .waitSeconds(0.2)
+//
+//                                .strafeLeft(21.5)
+//                                .waitSeconds(0.2)
+//
+//                                // In fata si se aliniaza sa puna conul.
+//                                .lineTo(new Vector2d(11, -30))
+//                                .splineTo(new Vector2d(18, -8.8), Math.toRadians(60) )
+//                                //Pune con
+//                                .waitSeconds(0.5)
+//                                //Se aliniaza spre turnul de conuri.
+//                                .back(4)
+//                                .waitSeconds(0.2)
+//                                .turn(Math.toRadians(-60))
+//                                .splineTo(new Vector2d(62, -12), Math.toRadians(0))
+//                                //Se intoarce sa puna con
+//                                .waitSeconds(0.5)
+//                                .setReversed(true)
+//                                .lineTo(new Vector2d(51, -12))
+//                                .splineTo(new Vector2d(29, -8.8), Math.toRadians(120))
+//                                .waitSeconds(1.5)
+//                                .setReversed(false)
+//                                //Se aliniaza spre turnul de conuri.
+//                                .splineTo(new Vector2d(48, -12), Math.toRadians(0))
+//                                .splineTo(new Vector2d(62, -12), Math.toRadians(0))
+//
+//                                //Se intoarce sa puna con
+//                                .waitSeconds(0.5)
+//                                .setReversed(true)
+//                                .lineTo(new Vector2d(51, -12))
+//                                .splineTo(new Vector2d(29, -8.8), Math.toRadians(120))
+//                                .setReversed(false)
+//                                .waitSeconds(1.5)
+//                                //Se aliniaza spre turnul de conuri.
+//                                .splineTo(new Vector2d(48, -12), Math.toRadians(0))
+//                                .splineTo(new Vector2d(62, -12), Math.toRadians(0))
+//                                .build()
+
                 );
 
         meepMeep.setBackground(MeepMeep.Background.FIELD_POWERPLAY_KAI_DARK)
