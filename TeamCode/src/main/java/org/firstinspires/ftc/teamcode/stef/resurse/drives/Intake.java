@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.stef.resurse.SHardware;
 
 public class Intake {
 
-    private static Servo intake, rotire = null;
+    private static Servo intake1, intake2, rotire = null;
     public static boolean inchis;
     public static boolean rotit;
 
@@ -17,26 +17,29 @@ public class Intake {
         inchis = false;
         rotit = true;
 
-        intake = SHardware.intake;
+        intake1 = SHardware.intake1;
+        intake2 = SHardware.intake2;
         rotire = SHardware.rotire;
-        intake.setPosition(1);
-        rotire.setPosition(1);
 
+        intake1.setPosition(1);
+        intake2.setPosition(0);
+        rotire.setPosition(1);
     }
 
     public static void loop(OpMode opMode){
-
 
         boolean einchis = inchis;
         boolean erotit = rotit;
 
         if (einchis) {
 //            intake.setPosition(Ceva.servoToDegrees(300));
-            intake.setPosition(0.5);
+            intake1.setPosition(0.7);
+            intake2.setPosition(0.3);
         }else {
 
 //            intake.setPosition(Ceva.servoToDegrees(250));
-            intake.setPosition(1);
+            intake1.setPosition(1);
+            intake2.setPosition(0);
         }
 
         if (erotit) {

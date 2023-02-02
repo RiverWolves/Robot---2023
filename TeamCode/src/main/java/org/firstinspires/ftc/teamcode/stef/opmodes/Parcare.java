@@ -37,35 +37,35 @@ public class Parcare extends LinearOpMode {
                //Porneste
                 .forward(2.5)
                 .waitSeconds(0.2)
-                .addDisplacementMarker( () -> {
+              /*  .addDisplacementMarker( () -> {
                     Intake.setInchis(false);
                     Intake.loop(this);
                     Lift.setLiftLevel(3);
-                })
+                })*/
                 .strafeRight(23)
                 .waitSeconds(0.2)
-//                .addDisplacementMarker(()->{
-//                    Brat.brat_fata();
-//                    Brat.loop(this);
-//                })
-//                .forward(10)
+/*                .addDisplacementMarker(()->{
+                    Brat.brat_fata();
+                    Brat.loop(this);
+                })
+                .forward(10)*/
                 //Se aliniaza cu pilonul
                 .lineTo(new Vector2d(-11, -30))
                 .splineTo(new Vector2d(-18, -8.8), Math.toRadians(120) )
                 // Pune con
                 .waitSeconds(0.5)
-                .addDisplacementMarker(()->{
+                /*.addDisplacementMarker(()->{
                     Lift.setLiftLevel(0);
-                })
+                })*/
                 //Se aliniaza cu turnul de conuri
                 .back(4)
                 .waitSeconds(0.2)
                 .turn(Math.toRadians(60))
                 .splineTo(new Vector2d(-62, -12), Math.toRadians(180))
                 //Porneste spre pilon
-                .addDisplacementMarker(() ->{
+                /*.addDisplacementMarker(() ->{
                     Lift.setLiftLevel(3);
-                })
+                })*/
                 .waitSeconds(0.5)
                 .setReversed(true)
                 .lineTo(new Vector2d(-51, -12))
@@ -73,15 +73,15 @@ public class Parcare extends LinearOpMode {
                 .waitSeconds(1.5)
                 //Se intoarce
                 .setReversed(false)
-                .addDisplacementMarker(() ->{
+               /* .addDisplacementMarker(() ->{
                     Lift.setLiftLevel(0);
-                })
+                })*/
                 .splineTo(new Vector2d(-48, -11), Math.toRadians(180))
                 .splineTo(new Vector2d(-62, -12), Math.toRadians(180))
                 //Porneste spre pilon
-                .addDisplacementMarker(()->{
+               /* .addDisplacementMarker(()->{
                     Lift.setLiftLevel(3);
-                })
+                })*/
 
                 .waitSeconds(0.5)
                 .setReversed(true)
@@ -89,9 +89,9 @@ public class Parcare extends LinearOpMode {
                 .splineTo(new Vector2d(-31, -11), Math.toRadians(60))
                 .setReversed(false)
                 .waitSeconds(1.5)
-                .addDisplacementMarker(() ->{
+              /*  .addDisplacementMarker(() ->{
                     Lift.setLiftLevel(0);
-                })
+                })*/
                 //Se intoarce
                 .splineTo(new Vector2d(-48, -12), Math.toRadians(180))
                 .splineTo(new Vector2d(-62, -12), Math.toRadians(180))
@@ -167,6 +167,7 @@ public class Parcare extends LinearOpMode {
 
         if (opModeIsActive()){
             drive.followTrajectorySequence(principala1);
+           /* drive.followTrajectorySequence(principala2);*/
 
 
             switch (TagBase.tag()){

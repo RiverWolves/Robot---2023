@@ -73,14 +73,17 @@ public class SGamepad {
 
         //Intake
         boolean buton1 = inchis.buttonToSwich(gamepad2.square); //transformam bumperul in switch
-        boolean buton2 = rotit.buttonToSwich(gamepad2.right_bumper);
-
-        Intake.setInchis(buton1); //setam starea intake-ului
+        boolean buton2;
 
         if(Lift.getPoz() > 800){
-            Brat.input(buton2);
-            Intake.setRotire(!buton2);
+            buton2 = rotit.buttonToSwich(gamepad2.right_bumper);
+        }else {
+            buton2 = true;
         }
+
+        Intake.setInchis(buton1); //setam starea intake-ului
+        Brat.input(buton2);
+        Intake.setRotire(!buton2);
 
 
         //Brat

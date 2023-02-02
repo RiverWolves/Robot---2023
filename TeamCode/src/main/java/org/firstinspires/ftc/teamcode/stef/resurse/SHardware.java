@@ -18,7 +18,7 @@ public class SHardware {
     public static DcMotor ss, sf, ds, df,
                           lift1, lift2, brat;
 
-    public static Servo intake, rotire;
+    public static Servo intake1, intake2, rotire;
 
 //    public static NormalizedColorSensor colorSensor;
 
@@ -78,7 +78,8 @@ public class SHardware {
 
 
         //servo cleste
-        intake = (Servo) opMode.hardwareMap.get("intake");
+        intake1 = (Servo) opMode.hardwareMap.get("intake1");
+        intake2 = (Servo) opMode.hardwareMap.get("intake2");
         rotire = (Servo) opMode.hardwareMap.get("rotire");
 
         brat = (DcMotor) opMode.hardwareMap.get("brat");
@@ -90,5 +91,4 @@ public class SHardware {
         initializat = true;
         telemetry.addData("Hardware initializat: ", initializat);
     }
-
 }
