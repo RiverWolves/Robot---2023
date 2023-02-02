@@ -102,6 +102,11 @@ public class Parcare extends LinearOpMode {
                                  //Iese din Start Point
                                 .forward(2.5)
                                 .waitSeconds(0.2)
+                                 /*  .addDisplacementMarker( () -> {
+                                    Intake.setInchis(false);
+                                     Intake.loop(this);
+                                     Lift.setLiftLevel(3);
+                                 })*/
 
                                 .strafeLeft(21.5)
                                 .waitSeconds(0.2)
@@ -111,23 +116,37 @@ public class Parcare extends LinearOpMode {
                                 .splineTo(new Vector2d(18, -8.8), Math.toRadians(60) )
                                 //Pune con
                                 .waitSeconds(0.5)
+                                 /*.addDisplacementMarker(()->{
+                                 Lift.setLiftLevel(0);
+                                 })*/
                                 //Se aliniaza spre turnul de conuri.
                                 .back(4)
                                 .waitSeconds(0.2)
                                 .turn(Math.toRadians(-60))
                                 .splineTo(new Vector2d(62, -12), Math.toRadians(0))
+
                                 //Se intoarce sa puna con
+                                /*.addDisplacementMarker(() ->{
+                                Lift.setLiftLevel(3);
+                                })*/
                                 .waitSeconds(0.5)
                                 .setReversed(true)
+
                                 .lineTo(new Vector2d(51, -12))
                                 .splineTo(new Vector2d(29, -8.8), Math.toRadians(120))
                                 .waitSeconds(1.5)
                                 .setReversed(false)
                                 //Se aliniaza spre turnul de conuri.
+                                /*.addDisplacementMarker(()->{
+                                 Lift.setLiftLevel(0);
+                                 })*/
                                 .splineTo(new Vector2d(48, -12), Math.toRadians(0))
                                 .splineTo(new Vector2d(62, -12), Math.toRadians(0))
 
                                 //Se intoarce sa puna con
+                                /*.addDisplacementMarker(() ->{
+                               Lift.setLiftLevel(3);
+                               })*/
                                 .waitSeconds(0.5)
                                 .setReversed(true)
                                 .lineTo(new Vector2d(51, -12))
@@ -135,6 +154,9 @@ public class Parcare extends LinearOpMode {
                                 .setReversed(false)
                                 .waitSeconds(1.5)
                                 //Se aliniaza spre turnul de conuri.
+                                 /*.addDisplacementMarker(()->{
+                                 Lift.setLiftLevel(0);
+                                 })*/
                                 .splineTo(new Vector2d(48, -12), Math.toRadians(0))
                                 .splineTo(new Vector2d(62, -12), Math.toRadians(0))
                                 .build();
