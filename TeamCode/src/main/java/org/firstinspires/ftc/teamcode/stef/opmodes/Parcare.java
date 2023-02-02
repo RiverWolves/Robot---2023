@@ -34,98 +34,125 @@ public class Parcare extends LinearOpMode {
         drive.setPoseEstimate(new Pose2d(-31.22, -62, Math.toRadians(90)));
 
         TrajectorySequence principala1 = drive.trajectorySequenceBuilder(new Pose2d(-31.22, -62, Math.toRadians(90)))
-               //Porneste
-                .forward(2.5)
-                .waitSeconds(0.2)
-              /*  .addDisplacementMarker( () -> {
+                 //Porneste
+                 .forward(2.5)
+                 .waitSeconds(0.2)
+                 /*
+                 .addDisplacementMarker( () -> {
                     Intake.setInchis(false);
                     Intake.loop(this);
                     Lift.setLiftLevel(3);
-                })*/
+                 })
+                 */
+                 //Pleaca spre mijloc
                 .strafeRight(23)
                 .waitSeconds(0.2)
-/*                .addDisplacementMarker(()->{
-                    Brat.brat_fata();
-                    Brat.loop(this);
+                /* .addDisplacementMarker(()->{
+                Brat.brat_fata();
+                Brat.loop(this);
                 })
-                .forward(10)*/
-                //Se aliniaza cu pilonul
+                */
+                // Mege la pilon
                 .lineTo(new Vector2d(-11, -30))
+
                 .splineTo(new Vector2d(-18, -8.8), Math.toRadians(120) )
-                // Pune con
+
                 .waitSeconds(0.5)
-                /*.addDisplacementMarker(()->{
-                    Lift.setLiftLevel(0);
-                })*/
+                /*.addDisplacementMarker(() ->{
+                Intake.setInchis(false);
+                Intake.loop(this);
+                Lift.setLiftLevel(0);
+                })
+                */
                 //Se aliniaza cu turnul de conuri
                 .back(4)
                 .waitSeconds(0.2)
                 .turn(Math.toRadians(60))
                 .splineTo(new Vector2d(-62, -12), Math.toRadians(180))
+
                 //Porneste spre pilon
                 /*.addDisplacementMarker(() ->{
-                    Lift.setLiftLevel(3);
+                Lift.setLiftLevel(3);
                 })*/
                 .waitSeconds(0.5)
                 .setReversed(true)
+
                 .lineTo(new Vector2d(-51, -12))
                 .splineTo(new Vector2d(-29, -11), Math.toRadians(60))
                 .waitSeconds(1.5)
-                //Se intoarce
+                //Se aliniaza spre turnul de conuri.
                 .setReversed(false)
                /* .addDisplacementMarker(() ->{
                     Lift.setLiftLevel(0);
                 })*/
+                //Se intoarce
                 .splineTo(new Vector2d(-48, -11), Math.toRadians(180))
                 .splineTo(new Vector2d(-62, -12), Math.toRadians(180))
-                //Porneste spre pilon
-               /* .addDisplacementMarker(()->{
-                    Lift.setLiftLevel(3);
-                })*/
+                /*.addDisplacementMarker(() ->{
+                Intake.setInchis(true);
+                Intake.loop(this);
+                Lift.setLiftLevel(3);
+                })
+                */
+                //Porneste spa puna con
 
+                //  TODO: PUNE CON
                 .waitSeconds(0.5)
                 .setReversed(true)
                 .lineTo(new Vector2d(-51, -12))
                 .splineTo(new Vector2d(-31, -11), Math.toRadians(60))
+                //Se intoarce
+
                 .setReversed(false)
                 .waitSeconds(1.5)
-              /*  .addDisplacementMarker(() ->{
-                    Lift.setLiftLevel(0);
-                })*/
-                //Se intoarce
+
+                /*.addDisplacementMarker(() ->{
+                Intake.setInchis(false);
+                Intake.loop(this);
+                Lift.setLiftLevel(0);
+                })
+                */
                 .splineTo(new Vector2d(-48, -12), Math.toRadians(180))
                 .splineTo(new Vector2d(-62, -12), Math.toRadians(180))
                 .build();
 
         TrajectorySequence principala2 = drive.trajectorySequenceBuilder(new Pose2d(33, -62, Math.toRadians(90)))
-
-                                 //Iese din Start Point
+                                 //Porneste
                                 .forward(2.5)
                                 .waitSeconds(0.2)
-                                 /*  .addDisplacementMarker( () -> {
-                                    Intake.setInchis(false);
-                                     Intake.loop(this);
-                                     Lift.setLiftLevel(3);
-                                 })*/
-
+                                 /*
+                                 .addDisplacementMarker( () -> {
+                                 Intake.setInchis(false);
+                                 Intake.loop(this);
+                                 Lift.setLiftLevel(3);
+                                 })
+                                 */
+                                //Pleaca spre mijloc
                                 .strafeLeft(21.5)
                                 .waitSeconds(0.2)
-
-                                // In fata si se aliniaza sa puna conul.
+                                /*.addDisplacementMarker(()->{
+                                       Brat.brat_fata();
+                                       Brat.loop(this);
+                                })*/
+                                // Mege la pilon
                                 .lineTo(new Vector2d(11, -30))
                                 .splineTo(new Vector2d(18, -8.8), Math.toRadians(60) )
-                                //Pune con
+
                                 .waitSeconds(0.5)
-                                 /*.addDisplacementMarker(()->{
-                                 Lift.setLiftLevel(0);
-                                 })*/
+                                /*.addDisplacementMarker(() ->{
+                                Intake.setInchis(false);
+                                Intake.loop(this);
+                                Lift.setLiftLevel(0);
+                                })
+                                */
                                 //Se aliniaza spre turnul de conuri.
+
                                 .back(4)
                                 .waitSeconds(0.2)
                                 .turn(Math.toRadians(-60))
                                 .splineTo(new Vector2d(62, -12), Math.toRadians(0))
 
-                                //Se intoarce sa puna con
+                                //Porneste spre pilon
                                 /*.addDisplacementMarker(() ->{
                                 Lift.setLiftLevel(3);
                                 })*/
@@ -135,28 +162,36 @@ public class Parcare extends LinearOpMode {
                                 .lineTo(new Vector2d(51, -12))
                                 .splineTo(new Vector2d(29, -8.8), Math.toRadians(120))
                                 .waitSeconds(1.5)
-                                .setReversed(false)
                                 //Se aliniaza spre turnul de conuri.
+                                .setReversed(false)
                                 /*.addDisplacementMarker(()->{
                                  Lift.setLiftLevel(0);
                                  })*/
                                 .splineTo(new Vector2d(48, -12), Math.toRadians(0))
                                 .splineTo(new Vector2d(62, -12), Math.toRadians(0))
+                                 /*.addDisplacementMarker(() ->{
+                                 Intake.setInchis(true);
+                                 Intake.loop(this);
+                                 Lift.setLiftLevel(3);
+                                 })
+                                */
 
-                                //Se intoarce sa puna con
-                                /*.addDisplacementMarker(() ->{
-                               Lift.setLiftLevel(3);
-                               })*/
+                                //  TODO: PUNE CON
                                 .waitSeconds(0.5)
                                 .setReversed(true)
                                 .lineTo(new Vector2d(51, -12))
                                 .splineTo(new Vector2d(29, -8.8), Math.toRadians(120))
+
                                 .setReversed(false)
                                 .waitSeconds(1.5)
                                 //Se aliniaza spre turnul de conuri.
-                                 /*.addDisplacementMarker(()->{
-                                 Lift.setLiftLevel(0);
-                                 })*/
+                                /*.addDisplacementMarker(() ->{
+                                Intake.setInchis(false);
+                                Intake.loop(this);
+                                Lift.setLiftLevel(0);
+                                })
+                                 */
+                                 //Se intoarce
                                 .splineTo(new Vector2d(48, -12), Math.toRadians(0))
                                 .splineTo(new Vector2d(62, -12), Math.toRadians(0))
                                 .build();
